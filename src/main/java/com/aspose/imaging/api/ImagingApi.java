@@ -49,7 +49,7 @@ public class ImagingApi {
 	* @param bitsPerPixel	Integer	Color depth.
 	* @param horizontalResolution	Integer	New horizontal resolution.
 	* @param verticalResolution	Integer	New vertical resolution.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true ï¿½ they will be taken from default values for standard image, if it is false ï¿½ they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param folder	String	Folder with image to process.
 	* @param storage	String	
@@ -125,7 +125,7 @@ try {
 	* @param bitsPerPixel	Integer	Color depth.
 	* @param horizontalResolution	Integer	New horizontal resolution.
 	* @param verticalResolution	Integer	New vertical resolution.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true ï¿½ they will be taken from default values for standard image, if it is false ï¿½ they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param file	File	
 	* @return ResponseMessage
@@ -511,7 +511,7 @@ try {
 	* @param interlaced	Boolean	Specifies if image is interlaced.
 	* @param isPaletteSorted	Boolean	Specifies if palette is sorted.
 	* @param pixelAspectRatio	Integer	Pixel aspect ratio.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true ï¿½ they will be taken from default values for standard image, if it is false ï¿½ they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param folder	String	Folder with image to process.
 	* @param storage	String	
@@ -602,7 +602,7 @@ try {
 	* @param interlaced	Boolean	Specifies if image is interlaced.
 	* @param isPaletteSorted	Boolean	Specifies if palette is sorted.
 	* @param pixelAspectRatio	Integer	Pixel aspect ratio.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true ï¿½ they will be taken from default values for standard image, if it is false ï¿½ they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param file	File	
 	* @return ResponseMessage
@@ -682,7 +682,7 @@ try {
 	* @param name	String	Filename of image.
 	* @param quality	Integer	Quality of image. From 0 to 100. Default is 75
 	* @param compressionType	String	Compression type.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true ï¿½ they will be taken from default values for standard image, if it is false ï¿½ they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param folder	String	Folder with image to process.
 	* @param storage	String	
@@ -753,7 +753,7 @@ try {
 	* Update parameters of jpg image.
 	* @param quality	Integer	Quality of image. From 0 to 100. Default is 75
 	* @param compressionType	String	Compression type.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true ï¿½ they will be taken from default values for standard image, if it is false ï¿½ they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param file	File	
 	* @return ResponseMessage
@@ -815,7 +815,7 @@ try {
 	* GetImagePng
 	* Update parameters of png image.
 	* @param name	String	Filename of image.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true ï¿½ they will be taken from default values for standard image, if it is false ï¿½ they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param folder	String	Folder with image to process.
 	* @param storage	String	
@@ -876,7 +876,7 @@ try {
   /**
 	* PostImagePng
 	* Update parameters of png image.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true ï¿½ they will be taken from default values for standard image, if it is false ï¿½ they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param file	File	
 	* @return ResponseMessage
@@ -984,7 +984,7 @@ try {
 	* @param name	String	Filename of image.
 	* @param channelsCount	Integer	Count of channels.
 	* @param compressionMethod	String	Compression method.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true ï¿½ they will be taken from default values for standard image, if it is false ï¿½ they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param folder	String	Folder with image to process.
 	* @param storage	String	
@@ -1055,7 +1055,7 @@ try {
 	* Update parameters of psd image.
 	* @param channelsCount	Integer	Count of channels.
 	* @param compressionMethod	String	Compression method.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true ï¿½ they will be taken from default values for standard image, if it is false ï¿½ they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param file	File	
 	* @return ResponseMessage
@@ -1866,4 +1866,3 @@ try {
     }
   }
   }
-

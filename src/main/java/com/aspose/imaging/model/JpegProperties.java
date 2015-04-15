@@ -1,27 +1,26 @@
 package com.aspose.imaging.model;
 
-import java.util.*;
 import com.aspose.imaging.model.JfifData;
 import com.aspose.imaging.model.JpegExifData;
 public class JpegProperties {
-  private List<String> Comment = new ArrayList<String>();
+  private String Comment = null;
   private JpegExifData JpegExifData = null;
   private JfifData JpegJfifData = null;
   /**
 	 * getComment
-	 * Gets List<String>
+	 * Gets String
 	 * @return Comment
 	 */
-  public List<String> getComment() {
+  public String getComment() {
     return Comment;
   }
 
 	/**
 	 * setComment
-	 * Sets List<String>
-	 * @param Comment List<String>
+	 * Sets String
+	 * @param Comment String
 	 */
-  public void setComment(List<String> Comment) {
+  public void setComment(String Comment) {
     this.Comment = Comment;
   }
 

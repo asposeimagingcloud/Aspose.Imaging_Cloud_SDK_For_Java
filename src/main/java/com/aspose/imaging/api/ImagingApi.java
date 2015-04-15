@@ -19,6 +19,17 @@ public class ImagingApi {
   ApiInvoker apiInvoker = ApiInvoker.getInstance();
   ApiInvokerResponse response = null;
 
+  public ImagingApi(String basePath, String apiKey, String appSid) {
+    this.basePath = basePath;
+    apiInvoker.addDefaultHeader(apiInvoker.API_KEY, apiKey);
+    apiInvoker.addDefaultHeader(apiInvoker.APP_SID, appSid);
+  }
+
+  public ImagingApi(String apiKey, String appSid) {
+    apiInvoker.addDefaultHeader(apiInvoker.API_KEY, apiKey);
+    apiInvoker.addDefaultHeader(apiInvoker.APP_SID, appSid);
+  }
+
   public ApiInvoker getInvoker() {
     return apiInvoker;
   }
@@ -31,7 +42,6 @@ public class ImagingApi {
     return basePath;
   }
 
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* GetImageBmp
 	* Update parameters of bmp image.
@@ -39,7 +49,7 @@ public class ImagingApi {
 	* @param bitsPerPixel	Integer	Color depth.
 	* @param horizontalResolution	Integer	New horizontal resolution.
 	* @param verticalResolution	Integer	New vertical resolution.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true â€“ they will be taken from default values for standard image, if it is false â€“ they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param folder	String	Folder with image to process.
 	* @param storage	String	
@@ -53,42 +63,52 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/{name}/bmp/?appSid={appSid}&amp;bitsPerPixel={bitsPerPixel}&amp;horizontalResolution={horizontalResolution}&amp;verticalResolution={verticalResolution}&amp;fromScratch={fromScratch}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/{name}/bmp/?appSid={appSid}&amp;bitsPerPixel={bitsPerPixel}&amp;horizontalResolution={horizontalResolution}&amp;verticalResolution={verticalResolution}&amp;fromScratch={fromScratch}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(name!=null)
-      queryParams.put("name", String.valueOf(name));
+	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(bitsPerPixel!=null)
-      queryParams.put("bitsPerPixel", String.valueOf(bitsPerPixel));
+	  resourcePath = resourcePath.replace("{" + "bitsPerPixel" + "}" , apiInvoker.toPathValue(bitsPerPixel));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]bitsPerPixel.*?(?=&|\\?|$)", "");
     if(horizontalResolution!=null)
-      queryParams.put("horizontalResolution", String.valueOf(horizontalResolution));
+	  resourcePath = resourcePath.replace("{" + "horizontalResolution" + "}" , apiInvoker.toPathValue(horizontalResolution));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]horizontalResolution.*?(?=&|\\?|$)", "");
     if(verticalResolution!=null)
-      queryParams.put("verticalResolution", String.valueOf(verticalResolution));
+	  resourcePath = resourcePath.replace("{" + "verticalResolution" + "}" , apiInvoker.toPathValue(verticalResolution));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]verticalResolution.*?(?=&|\\?|$)", "");
     if(fromScratch!=null)
-      queryParams.put("fromScratch", String.valueOf(fromScratch));
+	  resourcePath = resourcePath.replace("{" + "fromScratch" + "}" , apiInvoker.toPathValue(fromScratch));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]fromScratch.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
+	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
+	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "GET", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -99,14 +119,13 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* PostImageBmp
 	* Update parameters of bmp image.
 	* @param bitsPerPixel	Integer	Color depth.
 	* @param horizontalResolution	Integer	New horizontal resolution.
 	* @param verticalResolution	Integer	New vertical resolution.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true â€“ they will be taken from default values for standard image, if it is false â€“ they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param file	File	
 	* @return ResponseMessage
@@ -119,38 +138,45 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/bmp/?appSid={appSid}&amp;bitsPerPixel={bitsPerPixel}&amp;horizontalResolution={horizontalResolution}&amp;verticalResolution={verticalResolution}&amp;fromScratch={fromScratch}&amp;outPath={outPath}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/bmp/?appSid={appSid}&amp;bitsPerPixel={bitsPerPixel}&amp;horizontalResolution={horizontalResolution}&amp;verticalResolution={verticalResolution}&amp;fromScratch={fromScratch}&amp;outPath={outPath}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(bitsPerPixel!=null)
-      queryParams.put("bitsPerPixel", String.valueOf(bitsPerPixel));
+	  resourcePath = resourcePath.replace("{" + "bitsPerPixel" + "}" , apiInvoker.toPathValue(bitsPerPixel));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]bitsPerPixel.*?(?=&|\\?|$)", "");
     if(horizontalResolution!=null)
-      queryParams.put("horizontalResolution", String.valueOf(horizontalResolution));
+	  resourcePath = resourcePath.replace("{" + "horizontalResolution" + "}" , apiInvoker.toPathValue(horizontalResolution));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]horizontalResolution.*?(?=&|\\?|$)", "");
     if(verticalResolution!=null)
-      queryParams.put("verticalResolution", String.valueOf(verticalResolution));
+	  resourcePath = resourcePath.replace("{" + "verticalResolution" + "}" , apiInvoker.toPathValue(verticalResolution));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]verticalResolution.*?(?=&|\\?|$)", "");
     if(fromScratch!=null)
-      queryParams.put("fromScratch", String.valueOf(fromScratch));
+	  resourcePath = resourcePath.replace("{" + "fromScratch" + "}" , apiInvoker.toPathValue(fromScratch));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]fromScratch.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "multipart/form-data"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
+if(contentType.startsWith("multipart/form-data")) {      
       FormDataMultiPart mp = new FormDataMultiPart();
-      hasFields = true;
       mp.field("file", file, MediaType.MULTIPART_FORM_DATA_TYPE);
-      if(hasFields)
         postBody = mp;
     }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "POST", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -161,7 +187,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* GetCropImage
 	* Crop existing image
@@ -184,44 +209,56 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/{name}/crop/?appSid={appSid}&amp;toFormat={toFormat}&amp;x={x}&amp;y={y}&amp;width={width}&amp;height={height}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/{name}/crop/?appSid={appSid}&amp;toFormat={toFormat}&amp;x={x}&amp;y={y}&amp;width={width}&amp;height={height}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(name!=null)
-      queryParams.put("name", String.valueOf(name));
+	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(format!=null)
-      queryParams.put("format", String.valueOf(format));
+	  resourcePath = resourcePath.replace("{" + "format" + "}" , apiInvoker.toPathValue(format));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]format.*?(?=&|\\?|$)", "");
     if(x!=null)
-      queryParams.put("x", String.valueOf(x));
+	  resourcePath = resourcePath.replace("{" + "x" + "}" , apiInvoker.toPathValue(x));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]x.*?(?=&|\\?|$)", "");
     if(y!=null)
-      queryParams.put("y", String.valueOf(y));
+	  resourcePath = resourcePath.replace("{" + "y" + "}" , apiInvoker.toPathValue(y));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]y.*?(?=&|\\?|$)", "");
     if(width!=null)
-      queryParams.put("width", String.valueOf(width));
+	  resourcePath = resourcePath.replace("{" + "width" + "}" , apiInvoker.toPathValue(width));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]width.*?(?=&|\\?|$)", "");
     if(height!=null)
-      queryParams.put("height", String.valueOf(height));
+	  resourcePath = resourcePath.replace("{" + "height" + "}" , apiInvoker.toPathValue(height));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]height.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
+	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
+	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "GET", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -232,7 +269,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* PostCropImage
 	* Crop image from body
@@ -253,40 +289,49 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/crop/?appSid={appSid}&amp;toFormat={toFormat}&amp;x={x}&amp;y={y}&amp;width={width}&amp;height={height}&amp;outPath={outPath}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/crop/?appSid={appSid}&amp;toFormat={toFormat}&amp;x={x}&amp;y={y}&amp;width={width}&amp;height={height}&amp;outPath={outPath}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(format!=null)
-      queryParams.put("format", String.valueOf(format));
+	  resourcePath = resourcePath.replace("{" + "format" + "}" , apiInvoker.toPathValue(format));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]format.*?(?=&|\\?|$)", "");
     if(x!=null)
-      queryParams.put("x", String.valueOf(x));
+	  resourcePath = resourcePath.replace("{" + "x" + "}" , apiInvoker.toPathValue(x));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]x.*?(?=&|\\?|$)", "");
     if(y!=null)
-      queryParams.put("y", String.valueOf(y));
+	  resourcePath = resourcePath.replace("{" + "y" + "}" , apiInvoker.toPathValue(y));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]y.*?(?=&|\\?|$)", "");
     if(width!=null)
-      queryParams.put("width", String.valueOf(width));
+	  resourcePath = resourcePath.replace("{" + "width" + "}" , apiInvoker.toPathValue(width));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]width.*?(?=&|\\?|$)", "");
     if(height!=null)
-      queryParams.put("height", String.valueOf(height));
+	  resourcePath = resourcePath.replace("{" + "height" + "}" , apiInvoker.toPathValue(height));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]height.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "multipart/form-data"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
+if(contentType.startsWith("multipart/form-data")) {      
       FormDataMultiPart mp = new FormDataMultiPart();
-      hasFields = true;
       mp.field("file", file, MediaType.MULTIPART_FORM_DATA_TYPE);
-      if(hasFields)
         postBody = mp;
     }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "POST", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -297,7 +342,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* GetImageFrame
 	* Get separate frame of tiff image
@@ -324,52 +368,72 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/{name}/frames/{frameId}/?appSid={appSid}&amp;newWidth={newWidth}&amp;newHeight={newHeight}&amp;x={x}&amp;y={y}&amp;rectWidth={rectWidth}&amp;rectHeight={rectHeight}&amp;rotateFlipMethod={rotateFlipMethod}&amp;saveOtherFrames={saveOtherFrames}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/{name}/frames/{frameId}/?appSid={appSid}&amp;newWidth={newWidth}&amp;newHeight={newHeight}&amp;x={x}&amp;y={y}&amp;rectWidth={rectWidth}&amp;rectHeight={rectHeight}&amp;rotateFlipMethod={rotateFlipMethod}&amp;saveOtherFrames={saveOtherFrames}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(name!=null)
-      queryParams.put("name", String.valueOf(name));
+	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(frameId!=null)
-      queryParams.put("frameId", String.valueOf(frameId));
+	  resourcePath = resourcePath.replace("{" + "frameId" + "}" , apiInvoker.toPathValue(frameId));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]frameId.*?(?=&|\\?|$)", "");
     if(newWidth!=null)
-      queryParams.put("newWidth", String.valueOf(newWidth));
+	  resourcePath = resourcePath.replace("{" + "newWidth" + "}" , apiInvoker.toPathValue(newWidth));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]newWidth.*?(?=&|\\?|$)", "");
     if(newHeight!=null)
-      queryParams.put("newHeight", String.valueOf(newHeight));
+	  resourcePath = resourcePath.replace("{" + "newHeight" + "}" , apiInvoker.toPathValue(newHeight));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]newHeight.*?(?=&|\\?|$)", "");
     if(x!=null)
-      queryParams.put("x", String.valueOf(x));
+	  resourcePath = resourcePath.replace("{" + "x" + "}" , apiInvoker.toPathValue(x));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]x.*?(?=&|\\?|$)", "");
     if(y!=null)
-      queryParams.put("y", String.valueOf(y));
+	  resourcePath = resourcePath.replace("{" + "y" + "}" , apiInvoker.toPathValue(y));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]y.*?(?=&|\\?|$)", "");
     if(rectWidth!=null)
-      queryParams.put("rectWidth", String.valueOf(rectWidth));
+	  resourcePath = resourcePath.replace("{" + "rectWidth" + "}" , apiInvoker.toPathValue(rectWidth));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rectWidth.*?(?=&|\\?|$)", "");
     if(rectHeight!=null)
-      queryParams.put("rectHeight", String.valueOf(rectHeight));
+	  resourcePath = resourcePath.replace("{" + "rectHeight" + "}" , apiInvoker.toPathValue(rectHeight));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rectHeight.*?(?=&|\\?|$)", "");
     if(rotateFlipMethod!=null)
-      queryParams.put("rotateFlipMethod", String.valueOf(rotateFlipMethod));
+	  resourcePath = resourcePath.replace("{" + "rotateFlipMethod" + "}" , apiInvoker.toPathValue(rotateFlipMethod));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rotateFlipMethod.*?(?=&|\\?|$)", "");
     if(saveOtherFrames!=null)
-      queryParams.put("saveOtherFrames", String.valueOf(saveOtherFrames));
+	  resourcePath = resourcePath.replace("{" + "saveOtherFrames" + "}" , apiInvoker.toPathValue(saveOtherFrames));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]saveOtherFrames.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
+	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
+	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "GET", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -380,7 +444,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* GetImageFrameProperties
 	* Get properties of a tiff frame.
@@ -398,34 +461,36 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/{name}/frames/{frameId}/properties/?appSid={appSid}&amp;folder={folder}&amp;storage={storage}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/{name}/frames/{frameId}/properties/?appSid={appSid}&amp;folder={folder}&amp;storage={storage}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(name!=null)
-      queryParams.put("name", String.valueOf(name));
+	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(frameId!=null)
-      queryParams.put("frameId", String.valueOf(frameId));
+	  resourcePath = resourcePath.replace("{" + "frameId" + "}" , apiInvoker.toPathValue(frameId));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]frameId.*?(?=&|\\?|$)", "");
     if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
+	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
+	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "GET", queryParams, postBody, headerParams, formParams, contentType);
 		return (ImagingResponse) ApiInvoker.deserialize(response, "", ImagingResponse.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -436,73 +501,88 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* GetImageGif
 	* Update parameters of bmp image.
 	* @param name	String	Filename of image.
-	* @param backgroundColorIndex	String	Index of the background color.
-	* @param colorResolution	String	Color resolution.
+	* @param backgroundColorIndex	Integer	Index of the background color.
+	* @param colorResolution	Integer	Color resolution.
 	* @param hasTrailer	Boolean	Specifies if image has trailer.
 	* @param interlaced	Boolean	Specifies if image is interlaced.
 	* @param isPaletteSorted	Boolean	Specifies if palette is sorted.
-	* @param pixelAspectRatio	String	Pixel aspect ratio.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true â€“ they will be taken from default values for standard image, if it is false â€“ they will be saved from current image. Default is false.
+	* @param pixelAspectRatio	Integer	Pixel aspect ratio.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param folder	String	Folder with image to process.
 	* @param storage	String	
 	* @return ResponseMessage
 	*/
 
-  public ResponseMessage GetImageGif (String name, String backgroundColorIndex, String colorResolution, Boolean hasTrailer, Boolean interlaced, Boolean isPaletteSorted, String pixelAspectRatio, Boolean fromScratch, String outPath, String folder, String storage) {
+  public ResponseMessage GetImageGif (String name, Integer backgroundColorIndex, Integer colorResolution, Boolean hasTrailer, Boolean interlaced, Boolean isPaletteSorted, Integer pixelAspectRatio, Boolean fromScratch, String outPath, String folder, String storage) {
     Object postBody = null;
     // verify required params are set
     if(name == null ) {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/{name}/gif/?appSid={appSid}&amp;backgroundColorIndex={backgroundColorIndex}&amp;colorResolution={colorResolution}&amp;hasTrailer={hasTrailer}&amp;interlaced={interlaced}&amp;isPaletteSorted={isPaletteSorted}&amp;pixelAspectRatio={pixelAspectRatio}&amp;fromScratch={fromScratch}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/{name}/gif/?appSid={appSid}&amp;backgroundColorIndex={backgroundColorIndex}&amp;colorResolution={colorResolution}&amp;hasTrailer={hasTrailer}&amp;interlaced={interlaced}&amp;isPaletteSorted={isPaletteSorted}&amp;pixelAspectRatio={pixelAspectRatio}&amp;fromScratch={fromScratch}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(name!=null)
-      queryParams.put("name", String.valueOf(name));
+	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(backgroundColorIndex!=null)
-      queryParams.put("backgroundColorIndex", String.valueOf(backgroundColorIndex));
+	  resourcePath = resourcePath.replace("{" + "backgroundColorIndex" + "}" , apiInvoker.toPathValue(backgroundColorIndex));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]backgroundColorIndex.*?(?=&|\\?|$)", "");
     if(colorResolution!=null)
-      queryParams.put("colorResolution", String.valueOf(colorResolution));
+	  resourcePath = resourcePath.replace("{" + "colorResolution" + "}" , apiInvoker.toPathValue(colorResolution));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]colorResolution.*?(?=&|\\?|$)", "");
     if(hasTrailer!=null)
-      queryParams.put("hasTrailer", String.valueOf(hasTrailer));
+	  resourcePath = resourcePath.replace("{" + "hasTrailer" + "}" , apiInvoker.toPathValue(hasTrailer));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]hasTrailer.*?(?=&|\\?|$)", "");
     if(interlaced!=null)
-      queryParams.put("interlaced", String.valueOf(interlaced));
+	  resourcePath = resourcePath.replace("{" + "interlaced" + "}" , apiInvoker.toPathValue(interlaced));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]interlaced.*?(?=&|\\?|$)", "");
     if(isPaletteSorted!=null)
-      queryParams.put("isPaletteSorted", String.valueOf(isPaletteSorted));
+	  resourcePath = resourcePath.replace("{" + "isPaletteSorted" + "}" , apiInvoker.toPathValue(isPaletteSorted));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]isPaletteSorted.*?(?=&|\\?|$)", "");
     if(pixelAspectRatio!=null)
-      queryParams.put("pixelAspectRatio", String.valueOf(pixelAspectRatio));
+	  resourcePath = resourcePath.replace("{" + "pixelAspectRatio" + "}" , apiInvoker.toPathValue(pixelAspectRatio));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]pixelAspectRatio.*?(?=&|\\?|$)", "");
     if(fromScratch!=null)
-      queryParams.put("fromScratch", String.valueOf(fromScratch));
+	  resourcePath = resourcePath.replace("{" + "fromScratch" + "}" , apiInvoker.toPathValue(fromScratch));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]fromScratch.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
+	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
+	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "GET", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -513,67 +593,79 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* PostImageBmp_ImagingApi_0
 	* Update parameters of gif image.
-	* @param backgroundColorIndex	String	Index of the background color.
-	* @param colorResolution	String	Color resolution.
+	* @param backgroundColorIndex	Integer	Index of the background color.
+	* @param colorResolution	Integer	Color resolution.
 	* @param hasTrailer	Boolean	Specifies if image has trailer.
 	* @param interlaced	Boolean	Specifies if image is interlaced.
 	* @param isPaletteSorted	Boolean	Specifies if palette is sorted.
-	* @param pixelAspectRatio	String	Pixel aspect ratio.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true â€“ they will be taken from default values for standard image, if it is false â€“ they will be saved from current image. Default is false.
+	* @param pixelAspectRatio	Integer	Pixel aspect ratio.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param file	File	
 	* @return ResponseMessage
 	*/
 
-  public ResponseMessage PostImageBmp_ImagingApi_0 (String backgroundColorIndex, String colorResolution, Boolean hasTrailer, Boolean interlaced, Boolean isPaletteSorted, String pixelAspectRatio, Boolean fromScratch, String outPath, File file) {
+  public ResponseMessage PostImageBmp_ImagingApi_0 (Integer backgroundColorIndex, Integer colorResolution, Boolean hasTrailer, Boolean interlaced, Boolean isPaletteSorted, Integer pixelAspectRatio, Boolean fromScratch, String outPath, File file) {
     Object postBody = null;
     // verify required params are set
     if(file == null ) {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/gif/?appSid={appSid}&amp;backgroundColorIndex={backgroundColorIndex}&amp;colorResolution={colorResolution}&amp;hasTrailer={hasTrailer}&amp;interlaced={interlaced}&amp;isPaletteSorted={isPaletteSorted}&amp;pixelAspectRatio={pixelAspectRatio}&amp;fromScratch={fromScratch}&amp;outPath={outPath}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/gif/?appSid={appSid}&amp;backgroundColorIndex={backgroundColorIndex}&amp;colorResolution={colorResolution}&amp;hasTrailer={hasTrailer}&amp;interlaced={interlaced}&amp;isPaletteSorted={isPaletteSorted}&amp;pixelAspectRatio={pixelAspectRatio}&amp;fromScratch={fromScratch}&amp;outPath={outPath}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(backgroundColorIndex!=null)
-      queryParams.put("backgroundColorIndex", String.valueOf(backgroundColorIndex));
+	  resourcePath = resourcePath.replace("{" + "backgroundColorIndex" + "}" , apiInvoker.toPathValue(backgroundColorIndex));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]backgroundColorIndex.*?(?=&|\\?|$)", "");
     if(colorResolution!=null)
-      queryParams.put("colorResolution", String.valueOf(colorResolution));
+	  resourcePath = resourcePath.replace("{" + "colorResolution" + "}" , apiInvoker.toPathValue(colorResolution));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]colorResolution.*?(?=&|\\?|$)", "");
     if(hasTrailer!=null)
-      queryParams.put("hasTrailer", String.valueOf(hasTrailer));
+	  resourcePath = resourcePath.replace("{" + "hasTrailer" + "}" , apiInvoker.toPathValue(hasTrailer));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]hasTrailer.*?(?=&|\\?|$)", "");
     if(interlaced!=null)
-      queryParams.put("interlaced", String.valueOf(interlaced));
+	  resourcePath = resourcePath.replace("{" + "interlaced" + "}" , apiInvoker.toPathValue(interlaced));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]interlaced.*?(?=&|\\?|$)", "");
     if(isPaletteSorted!=null)
-      queryParams.put("isPaletteSorted", String.valueOf(isPaletteSorted));
+	  resourcePath = resourcePath.replace("{" + "isPaletteSorted" + "}" , apiInvoker.toPathValue(isPaletteSorted));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]isPaletteSorted.*?(?=&|\\?|$)", "");
     if(pixelAspectRatio!=null)
-      queryParams.put("pixelAspectRatio", String.valueOf(pixelAspectRatio));
+	  resourcePath = resourcePath.replace("{" + "pixelAspectRatio" + "}" , apiInvoker.toPathValue(pixelAspectRatio));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]pixelAspectRatio.*?(?=&|\\?|$)", "");
     if(fromScratch!=null)
-      queryParams.put("fromScratch", String.valueOf(fromScratch));
+	  resourcePath = resourcePath.replace("{" + "fromScratch" + "}" , apiInvoker.toPathValue(fromScratch));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]fromScratch.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "multipart/form-data"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
+if(contentType.startsWith("multipart/form-data")) {      
       FormDataMultiPart mp = new FormDataMultiPart();
-      hasFields = true;
       mp.field("file", file, MediaType.MULTIPART_FORM_DATA_TYPE);
-      if(hasFields)
         postBody = mp;
     }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "POST", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -584,14 +676,13 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* GetImageJpg
 	* Update parameters of jpg image.
 	* @param name	String	Filename of image.
 	* @param quality	Integer	Quality of image. From 0 to 100. Default is 75
 	* @param compressionType	String	Compression type.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true â€“ they will be taken from default values for standard image, if it is false â€“ they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param folder	String	Folder with image to process.
 	* @param storage	String	
@@ -605,40 +696,48 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/{name}/jpg/?appSid={appSid}&amp;quality={quality}&amp;compressionType={compressionType}&amp;fromScratch={fromScratch}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/{name}/jpg/?appSid={appSid}&amp;quality={quality}&amp;compressionType={compressionType}&amp;fromScratch={fromScratch}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(name!=null)
-      queryParams.put("name", String.valueOf(name));
+	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(quality!=null)
-      queryParams.put("quality", String.valueOf(quality));
+	  resourcePath = resourcePath.replace("{" + "quality" + "}" , apiInvoker.toPathValue(quality));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]quality.*?(?=&|\\?|$)", "");
     if(compressionType!=null)
-      queryParams.put("compressionType", String.valueOf(compressionType));
+	  resourcePath = resourcePath.replace("{" + "compressionType" + "}" , apiInvoker.toPathValue(compressionType));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]compressionType.*?(?=&|\\?|$)", "");
     if(fromScratch!=null)
-      queryParams.put("fromScratch", String.valueOf(fromScratch));
+	  resourcePath = resourcePath.replace("{" + "fromScratch" + "}" , apiInvoker.toPathValue(fromScratch));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]fromScratch.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
+	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
+	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "GET", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -649,13 +748,12 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* PostImageJpg
 	* Update parameters of jpg image.
 	* @param quality	Integer	Quality of image. From 0 to 100. Default is 75
 	* @param compressionType	String	Compression type.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true â€“ they will be taken from default values for standard image, if it is false â€“ they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param file	File	
 	* @return ResponseMessage
@@ -668,36 +766,41 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/jpg/?appSid={appSid}&amp;quality={quality}&amp;compressionType={compressionType}&amp;fromScratch={fromScratch}&amp;outPath={outPath}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/jpg/?appSid={appSid}&amp;quality={quality}&amp;compressionType={compressionType}&amp;fromScratch={fromScratch}&amp;outPath={outPath}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(quality!=null)
-      queryParams.put("quality", String.valueOf(quality));
+	  resourcePath = resourcePath.replace("{" + "quality" + "}" , apiInvoker.toPathValue(quality));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]quality.*?(?=&|\\?|$)", "");
     if(compressionType!=null)
-      queryParams.put("compressionType", String.valueOf(compressionType));
+	  resourcePath = resourcePath.replace("{" + "compressionType" + "}" , apiInvoker.toPathValue(compressionType));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]compressionType.*?(?=&|\\?|$)", "");
     if(fromScratch!=null)
-      queryParams.put("fromScratch", String.valueOf(fromScratch));
+	  resourcePath = resourcePath.replace("{" + "fromScratch" + "}" , apiInvoker.toPathValue(fromScratch));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]fromScratch.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "multipart/form-data"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
+if(contentType.startsWith("multipart/form-data")) {      
       FormDataMultiPart mp = new FormDataMultiPart();
-      hasFields = true;
       mp.field("file", file, MediaType.MULTIPART_FORM_DATA_TYPE);
-      if(hasFields)
         postBody = mp;
     }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "POST", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -708,12 +811,11 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* GetImagePng
 	* Update parameters of png image.
 	* @param name	String	Filename of image.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true â€“ they will be taken from default values for standard image, if it is false â€“ they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param folder	String	Folder with image to process.
 	* @param storage	String	
@@ -727,36 +829,40 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/{name}/png/?appSid={appSid}&amp;fromScratch={fromScratch}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/{name}/png/?appSid={appSid}&amp;fromScratch={fromScratch}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(name!=null)
-      queryParams.put("name", String.valueOf(name));
+	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(fromScratch!=null)
-      queryParams.put("fromScratch", String.valueOf(fromScratch));
+	  resourcePath = resourcePath.replace("{" + "fromScratch" + "}" , apiInvoker.toPathValue(fromScratch));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]fromScratch.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
+	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
+	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "GET", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -767,11 +873,10 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* PostImagePng
 	* Update parameters of png image.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true â€“ they will be taken from default values for standard image, if it is false â€“ they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param file	File	
 	* @return ResponseMessage
@@ -784,32 +889,33 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/png/?appSid={appSid}&amp;fromScratch={fromScratch}&amp;outPath={outPath}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/png/?appSid={appSid}&amp;fromScratch={fromScratch}&amp;outPath={outPath}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(fromScratch!=null)
-      queryParams.put("fromScratch", String.valueOf(fromScratch));
+	  resourcePath = resourcePath.replace("{" + "fromScratch" + "}" , apiInvoker.toPathValue(fromScratch));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]fromScratch.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "multipart/form-data"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
+if(contentType.startsWith("multipart/form-data")) {      
       FormDataMultiPart mp = new FormDataMultiPart();
-      hasFields = true;
       mp.field("file", file, MediaType.MULTIPART_FORM_DATA_TYPE);
-      if(hasFields)
         postBody = mp;
     }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "POST", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -820,7 +926,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* GetImageProperties
 	* Get properties of an image.
@@ -837,32 +942,32 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/{name}/properties/?appSid={appSid}&amp;folder={folder}&amp;storage={storage}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/{name}/properties/?appSid={appSid}&amp;folder={folder}&amp;storage={storage}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(name!=null)
-      queryParams.put("name", String.valueOf(name));
+	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
+	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
+	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "GET", queryParams, postBody, headerParams, formParams, contentType);
 		return (ImagingResponse) ApiInvoker.deserialize(response, "", ImagingResponse.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -873,14 +978,13 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* GetImagePsd
 	* Update parameters of psd image.
 	* @param name	String	Filename of image.
 	* @param channelsCount	Integer	Count of channels.
 	* @param compressionMethod	String	Compression method.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true â€“ they will be taken from default values for standard image, if it is false â€“ they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param folder	String	Folder with image to process.
 	* @param storage	String	
@@ -894,40 +998,48 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/{name}/psd/?appSid={appSid}&amp;channelsCount={channelsCount}&amp;compressionMethod={compressionMethod}&amp;fromScratch={fromScratch}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/{name}/psd/?appSid={appSid}&amp;channelsCount={channelsCount}&amp;compressionMethod={compressionMethod}&amp;fromScratch={fromScratch}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(name!=null)
-      queryParams.put("name", String.valueOf(name));
+	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(channelsCount!=null)
-      queryParams.put("channelsCount", String.valueOf(channelsCount));
+	  resourcePath = resourcePath.replace("{" + "channelsCount" + "}" , apiInvoker.toPathValue(channelsCount));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]channelsCount.*?(?=&|\\?|$)", "");
     if(compressionMethod!=null)
-      queryParams.put("compressionMethod", String.valueOf(compressionMethod));
+	  resourcePath = resourcePath.replace("{" + "compressionMethod" + "}" , apiInvoker.toPathValue(compressionMethod));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]compressionMethod.*?(?=&|\\?|$)", "");
     if(fromScratch!=null)
-      queryParams.put("fromScratch", String.valueOf(fromScratch));
+	  resourcePath = resourcePath.replace("{" + "fromScratch" + "}" , apiInvoker.toPathValue(fromScratch));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]fromScratch.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
+	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
+	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "GET", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -938,13 +1050,12 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* PostImagePsd
 	* Update parameters of psd image.
 	* @param channelsCount	Integer	Count of channels.
 	* @param compressionMethod	String	Compression method.
-	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true â€“ they will be taken from default values for standard image, if it is false â€“ they will be saved from current image. Default is false.
+	* @param fromScratch	Boolean	Specifies where additional parameters we do not support should be taken from. If this is true – they will be taken from default values for standard image, if it is false – they will be saved from current image. Default is false.
 	* @param outPath	String	Path to updated file, if this is empty, response contains streamed image.
 	* @param file	File	
 	* @return ResponseMessage
@@ -957,36 +1068,41 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/psd/?appSid={appSid}&amp;channelsCount={channelsCount}&amp;compressionMethod={compressionMethod}&amp;fromScratch={fromScratch}&amp;outPath={outPath}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/psd/?appSid={appSid}&amp;channelsCount={channelsCount}&amp;compressionMethod={compressionMethod}&amp;fromScratch={fromScratch}&amp;outPath={outPath}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(channelsCount!=null)
-      queryParams.put("channelsCount", String.valueOf(channelsCount));
+	  resourcePath = resourcePath.replace("{" + "channelsCount" + "}" , apiInvoker.toPathValue(channelsCount));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]channelsCount.*?(?=&|\\?|$)", "");
     if(compressionMethod!=null)
-      queryParams.put("compressionMethod", String.valueOf(compressionMethod));
+	  resourcePath = resourcePath.replace("{" + "compressionMethod" + "}" , apiInvoker.toPathValue(compressionMethod));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]compressionMethod.*?(?=&|\\?|$)", "");
     if(fromScratch!=null)
-      queryParams.put("fromScratch", String.valueOf(fromScratch));
+	  resourcePath = resourcePath.replace("{" + "fromScratch" + "}" , apiInvoker.toPathValue(fromScratch));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]fromScratch.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "multipart/form-data"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
+if(contentType.startsWith("multipart/form-data")) {      
       FormDataMultiPart mp = new FormDataMultiPart();
-      hasFields = true;
       mp.field("file", file, MediaType.MULTIPART_FORM_DATA_TYPE);
-      if(hasFields)
         postBody = mp;
     }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "POST", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -997,7 +1113,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* GetChangeImageScale
 	* Change scale of an existing image
@@ -1018,40 +1133,48 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/{name}/resize/?appSid={appSid}&amp;toFormat={toFormat}&amp;newWidth={newWidth}&amp;newHeight={newHeight}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/{name}/resize/?appSid={appSid}&amp;toFormat={toFormat}&amp;newWidth={newWidth}&amp;newHeight={newHeight}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(name!=null)
-      queryParams.put("name", String.valueOf(name));
+	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(format!=null)
-      queryParams.put("format", String.valueOf(format));
+	  resourcePath = resourcePath.replace("{" + "format" + "}" , apiInvoker.toPathValue(format));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]format.*?(?=&|\\?|$)", "");
     if(newWidth!=null)
-      queryParams.put("newWidth", String.valueOf(newWidth));
+	  resourcePath = resourcePath.replace("{" + "newWidth" + "}" , apiInvoker.toPathValue(newWidth));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]newWidth.*?(?=&|\\?|$)", "");
     if(newHeight!=null)
-      queryParams.put("newHeight", String.valueOf(newHeight));
+	  resourcePath = resourcePath.replace("{" + "newHeight" + "}" , apiInvoker.toPathValue(newHeight));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]newHeight.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
+	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
+	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "GET", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -1062,7 +1185,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* PostChangeImageScale
 	* Change scale of an image from body
@@ -1081,36 +1203,41 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/resize/?appSid={appSid}&amp;toFormat={toFormat}&amp;newWidth={newWidth}&amp;newHeight={newHeight}&amp;outPath={outPath}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/resize/?appSid={appSid}&amp;toFormat={toFormat}&amp;newWidth={newWidth}&amp;newHeight={newHeight}&amp;outPath={outPath}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(format!=null)
-      queryParams.put("format", String.valueOf(format));
+	  resourcePath = resourcePath.replace("{" + "format" + "}" , apiInvoker.toPathValue(format));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]format.*?(?=&|\\?|$)", "");
     if(newWidth!=null)
-      queryParams.put("newWidth", String.valueOf(newWidth));
+	  resourcePath = resourcePath.replace("{" + "newWidth" + "}" , apiInvoker.toPathValue(newWidth));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]newWidth.*?(?=&|\\?|$)", "");
     if(newHeight!=null)
-      queryParams.put("newHeight", String.valueOf(newHeight));
+	  resourcePath = resourcePath.replace("{" + "newHeight" + "}" , apiInvoker.toPathValue(newHeight));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]newHeight.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "multipart/form-data"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
+if(contentType.startsWith("multipart/form-data")) {      
       FormDataMultiPart mp = new FormDataMultiPart();
-      hasFields = true;
       mp.field("file", file, MediaType.MULTIPART_FORM_DATA_TYPE);
-      if(hasFields)
         postBody = mp;
     }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "POST", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -1121,7 +1248,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* GetImageRotateFlip
 	* Rotate and flip existing image
@@ -1141,38 +1267,44 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/{name}/rotateflip/?toFormat={toFormat}&amp;appSid={appSid}&amp;method={method}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/{name}/rotateflip/?toFormat={toFormat}&amp;appSid={appSid}&amp;method={method}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(name!=null)
-      queryParams.put("name", String.valueOf(name));
+	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(format!=null)
-      queryParams.put("format", String.valueOf(format));
+	  resourcePath = resourcePath.replace("{" + "format" + "}" , apiInvoker.toPathValue(format));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]format.*?(?=&|\\?|$)", "");
     if(method!=null)
-      queryParams.put("method", String.valueOf(method));
+	  resourcePath = resourcePath.replace("{" + "method" + "}" , apiInvoker.toPathValue(method));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]method.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
+	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
+	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "GET", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -1183,7 +1315,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* PostImageRotateFlip
 	* Rotate and flip existing image and get it from response.
@@ -1201,34 +1332,37 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/rotateflip/?toFormat={toFormat}&amp;appSid={appSid}&amp;method={method}&amp;outPath={outPath}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/rotateflip/?toFormat={toFormat}&amp;appSid={appSid}&amp;method={method}&amp;outPath={outPath}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(format!=null)
-      queryParams.put("format", String.valueOf(format));
+	  resourcePath = resourcePath.replace("{" + "format" + "}" , apiInvoker.toPathValue(format));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]format.*?(?=&|\\?|$)", "");
     if(method!=null)
-      queryParams.put("method", String.valueOf(method));
+	  resourcePath = resourcePath.replace("{" + "method" + "}" , apiInvoker.toPathValue(method));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]method.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "multipart/form-data"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
+if(contentType.startsWith("multipart/form-data")) {      
       FormDataMultiPart mp = new FormDataMultiPart();
-      hasFields = true;
       mp.field("file", file, MediaType.MULTIPART_FORM_DATA_TYPE);
-      if(hasFields)
         postBody = mp;
     }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "POST", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -1239,7 +1373,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* GetImageSaveAs
 	* Export existing image to another format
@@ -1258,36 +1391,40 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/{name}/saveAs/?appSid={appSid}&amp;toFormat={toFormat}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/{name}/saveAs/?appSid={appSid}&amp;toFormat={toFormat}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(name!=null)
-      queryParams.put("name", String.valueOf(name));
+	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(format!=null)
-      queryParams.put("format", String.valueOf(format));
+	  resourcePath = resourcePath.replace("{" + "format" + "}" , apiInvoker.toPathValue(format));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]format.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
+	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
+	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "GET", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -1298,7 +1435,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* PostImageSaveAs
 	* Export existing image to another format. Image is passed as request body.
@@ -1315,32 +1451,33 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/saveAs/?appSid={appSid}&amp;toFormat={toFormat}&amp;outPath={outPath}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/saveAs/?appSid={appSid}&amp;toFormat={toFormat}&amp;outPath={outPath}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(format!=null)
-      queryParams.put("format", String.valueOf(format));
+	  resourcePath = resourcePath.replace("{" + "format" + "}" , apiInvoker.toPathValue(format));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]format.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "multipart/form-data"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
+if(contentType.startsWith("multipart/form-data")) {      
       FormDataMultiPart mp = new FormDataMultiPart();
-      hasFields = true;
       mp.field("file", file, MediaType.MULTIPART_FORM_DATA_TYPE);
-      if(hasFields)
         postBody = mp;
     }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "POST", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -1351,7 +1488,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* GetTiffToFax
 	* Get tiff image for fax.
@@ -1369,34 +1505,36 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/tiff/{name}/toFax/?appSid={appSid}&amp;storage={storage}&amp;folder={folder}&amp;outPath={outPath}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/tiff/{name}/toFax/?appSid={appSid}&amp;storage={storage}&amp;folder={folder}&amp;outPath={outPath}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(name!=null)
-      queryParams.put("name", String.valueOf(name));
+	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
+	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
+	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "GET", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -1407,7 +1545,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* PostProcessTiff
 	* Update tiff image.
@@ -1429,42 +1566,53 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/tiff/?appSid={appSid}&amp;compression={compression}&amp;resolutionUnit={resolutionUnit}&amp;bitDepth={bitDepth}&amp;fromScratch={fromScratch}&amp;horizontalResolution={horizontalResolution}&amp;verticalResolution={verticalResolution}&amp;outPath={outPath}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/tiff/?appSid={appSid}&amp;compression={compression}&amp;resolutionUnit={resolutionUnit}&amp;bitDepth={bitDepth}&amp;fromScratch={fromScratch}&amp;horizontalResolution={horizontalResolution}&amp;verticalResolution={verticalResolution}&amp;outPath={outPath}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(compression!=null)
-      queryParams.put("compression", String.valueOf(compression));
+	  resourcePath = resourcePath.replace("{" + "compression" + "}" , apiInvoker.toPathValue(compression));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]compression.*?(?=&|\\?|$)", "");
     if(resolutionUnit!=null)
-      queryParams.put("resolutionUnit", String.valueOf(resolutionUnit));
+	  resourcePath = resourcePath.replace("{" + "resolutionUnit" + "}" , apiInvoker.toPathValue(resolutionUnit));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]resolutionUnit.*?(?=&|\\?|$)", "");
     if(bitDepth!=null)
-      queryParams.put("bitDepth", String.valueOf(bitDepth));
+	  resourcePath = resourcePath.replace("{" + "bitDepth" + "}" , apiInvoker.toPathValue(bitDepth));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]bitDepth.*?(?=&|\\?|$)", "");
     if(fromScratch!=null)
-      queryParams.put("fromScratch", String.valueOf(fromScratch));
+	  resourcePath = resourcePath.replace("{" + "fromScratch" + "}" , apiInvoker.toPathValue(fromScratch));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]fromScratch.*?(?=&|\\?|$)", "");
     if(horizontalResolution!=null)
-      queryParams.put("horizontalResolution", String.valueOf(horizontalResolution));
+	  resourcePath = resourcePath.replace("{" + "horizontalResolution" + "}" , apiInvoker.toPathValue(horizontalResolution));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]horizontalResolution.*?(?=&|\\?|$)", "");
     if(verticalResolution!=null)
-      queryParams.put("verticalResolution", String.valueOf(verticalResolution));
+	  resourcePath = resourcePath.replace("{" + "verticalResolution" + "}" , apiInvoker.toPathValue(verticalResolution));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]verticalResolution.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "multipart/form-data"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
+if(contentType.startsWith("multipart/form-data")) {      
       FormDataMultiPart mp = new FormDataMultiPart();
-      hasFields = true;
       mp.field("file", file, MediaType.MULTIPART_FORM_DATA_TYPE);
-      if(hasFields)
         postBody = mp;
     }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "POST", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -1475,7 +1623,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* PostTiffAppend
 	* Append tiff image.
@@ -1493,34 +1640,36 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/tiff/{name}/appendTiff/?appSid={appSid}&amp;appendFile={appendFile}&amp;storage={storage}&amp;folder={folder}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/tiff/{name}/appendTiff/?appSid={appSid}&amp;appendFile={appendFile}&amp;storage={storage}&amp;folder={folder}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(name!=null)
-      queryParams.put("name", String.valueOf(name));
+	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(appendFile!=null)
-      queryParams.put("appendFile", String.valueOf(appendFile));
+	  resourcePath = resourcePath.replace("{" + "appendFile" + "}" , apiInvoker.toPathValue(appendFile));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]appendFile.*?(?=&|\\?|$)", "");
     if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
+	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
+	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "POST", queryParams, postBody, headerParams, formParams, contentType);
 		return (SaaSposeResponse) ApiInvoker.deserialize(response, "", SaaSposeResponse.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -1531,7 +1680,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* GetUpdatedImage
 	* Perform scaling, cropping and flipping of an image in single request.
@@ -1557,50 +1705,68 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/{name}/updateImage/?appSid={appSid}&amp;toFormat={toFormat}&amp;newWidth={newWidth}&amp;newHeight={newHeight}&amp;x={x}&amp;y={y}&amp;rectWidth={rectWidth}&amp;rectHeight={rectHeight}&amp;rotateFlipMethod={rotateFlipMethod}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/{name}/updateImage/?appSid={appSid}&amp;toFormat={toFormat}&amp;newWidth={newWidth}&amp;newHeight={newHeight}&amp;x={x}&amp;y={y}&amp;rectWidth={rectWidth}&amp;rectHeight={rectHeight}&amp;rotateFlipMethod={rotateFlipMethod}&amp;outPath={outPath}&amp;folder={folder}&amp;storage={storage}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(name!=null)
-      queryParams.put("name", String.valueOf(name));
+	  resourcePath = resourcePath.replace("{" + "name" + "}" , apiInvoker.toPathValue(name));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]name.*?(?=&|\\?|$)", "");
     if(format!=null)
-      queryParams.put("format", String.valueOf(format));
+	  resourcePath = resourcePath.replace("{" + "format" + "}" , apiInvoker.toPathValue(format));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]format.*?(?=&|\\?|$)", "");
     if(newWidth!=null)
-      queryParams.put("newWidth", String.valueOf(newWidth));
+	  resourcePath = resourcePath.replace("{" + "newWidth" + "}" , apiInvoker.toPathValue(newWidth));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]newWidth.*?(?=&|\\?|$)", "");
     if(newHeight!=null)
-      queryParams.put("newHeight", String.valueOf(newHeight));
+	  resourcePath = resourcePath.replace("{" + "newHeight" + "}" , apiInvoker.toPathValue(newHeight));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]newHeight.*?(?=&|\\?|$)", "");
     if(x!=null)
-      queryParams.put("x", String.valueOf(x));
+	  resourcePath = resourcePath.replace("{" + "x" + "}" , apiInvoker.toPathValue(x));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]x.*?(?=&|\\?|$)", "");
     if(y!=null)
-      queryParams.put("y", String.valueOf(y));
+	  resourcePath = resourcePath.replace("{" + "y" + "}" , apiInvoker.toPathValue(y));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]y.*?(?=&|\\?|$)", "");
     if(rectWidth!=null)
-      queryParams.put("rectWidth", String.valueOf(rectWidth));
+	  resourcePath = resourcePath.replace("{" + "rectWidth" + "}" , apiInvoker.toPathValue(rectWidth));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rectWidth.*?(?=&|\\?|$)", "");
     if(rectHeight!=null)
-      queryParams.put("rectHeight", String.valueOf(rectHeight));
+	  resourcePath = resourcePath.replace("{" + "rectHeight" + "}" , apiInvoker.toPathValue(rectHeight));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rectHeight.*?(?=&|\\?|$)", "");
     if(rotateFlipMethod!=null)
-      queryParams.put("rotateFlipMethod", String.valueOf(rotateFlipMethod));
+	  resourcePath = resourcePath.replace("{" + "rotateFlipMethod" + "}" , apiInvoker.toPathValue(rotateFlipMethod));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rotateFlipMethod.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     if(folder!=null)
-      queryParams.put("folder", String.valueOf(folder));
+	  resourcePath = resourcePath.replace("{" + "folder" + "}" , apiInvoker.toPathValue(folder));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]folder.*?(?=&|\\?|$)", "");
     if(storage!=null)
-      queryParams.put("storage", String.valueOf(storage));
+	  resourcePath = resourcePath.replace("{" + "storage" + "}" , apiInvoker.toPathValue(storage));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]storage.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "application/json"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      FormDataMultiPart mp = new FormDataMultiPart();
-      if(hasFields)
-        postBody = mp;
-    }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "GET", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {
@@ -1611,7 +1777,6 @@ public class ImagingApi {
       }
     }
   }
-  //error info- code: 404 reason: "no project found" model: <none>
   /**
 	* PostImageSaveAs_ImagingApi_0
 	* Perform scaling, cropping and flipping of an image in single request. Image is passed as request body.
@@ -1635,46 +1800,61 @@ public class ImagingApi {
        throw new ApiException(400, "missing required params");
     }
     // create path and map variables
-    String path = "/imaging/updateImage/?appSid={appSid}&amp;toFormat={toFormat}&amp;newWidth={newWidth}&amp;newHeight={newHeight}&amp;x={x}&amp;y={y}&amp;rectWidth={rectWidth}&amp;rectHeight={rectHeight}&amp;rotateFlipMethod={rotateFlipMethod}&amp;outPath={outPath}".replaceAll("\\{format\\}","json");
-
+    String resourcePath = "/imaging/updateImage/?appSid={appSid}&amp;toFormat={toFormat}&amp;newWidth={newWidth}&amp;newHeight={newHeight}&amp;x={x}&amp;y={y}&amp;rectWidth={rectWidth}&amp;rectHeight={rectHeight}&amp;rotateFlipMethod={rotateFlipMethod}&amp;outPath={outPath}";
+	resourcePath = resourcePath.replaceAll("\\*", "").replace("&amp;", "&").replace("/?", "?").replace("toFormat={toFormat}", "format={format}");
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
     if(format!=null)
-      queryParams.put("format", String.valueOf(format));
+	  resourcePath = resourcePath.replace("{" + "format" + "}" , apiInvoker.toPathValue(format));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]format.*?(?=&|\\?|$)", "");
     if(newWidth!=null)
-      queryParams.put("newWidth", String.valueOf(newWidth));
+	  resourcePath = resourcePath.replace("{" + "newWidth" + "}" , apiInvoker.toPathValue(newWidth));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]newWidth.*?(?=&|\\?|$)", "");
     if(newHeight!=null)
-      queryParams.put("newHeight", String.valueOf(newHeight));
+	  resourcePath = resourcePath.replace("{" + "newHeight" + "}" , apiInvoker.toPathValue(newHeight));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]newHeight.*?(?=&|\\?|$)", "");
     if(x!=null)
-      queryParams.put("x", String.valueOf(x));
+	  resourcePath = resourcePath.replace("{" + "x" + "}" , apiInvoker.toPathValue(x));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]x.*?(?=&|\\?|$)", "");
     if(y!=null)
-      queryParams.put("y", String.valueOf(y));
+	  resourcePath = resourcePath.replace("{" + "y" + "}" , apiInvoker.toPathValue(y));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]y.*?(?=&|\\?|$)", "");
     if(rectWidth!=null)
-      queryParams.put("rectWidth", String.valueOf(rectWidth));
+	  resourcePath = resourcePath.replace("{" + "rectWidth" + "}" , apiInvoker.toPathValue(rectWidth));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rectWidth.*?(?=&|\\?|$)", "");
     if(rectHeight!=null)
-      queryParams.put("rectHeight", String.valueOf(rectHeight));
+	  resourcePath = resourcePath.replace("{" + "rectHeight" + "}" , apiInvoker.toPathValue(rectHeight));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rectHeight.*?(?=&|\\?|$)", "");
     if(rotateFlipMethod!=null)
-      queryParams.put("rotateFlipMethod", String.valueOf(rotateFlipMethod));
+	  resourcePath = resourcePath.replace("{" + "rotateFlipMethod" + "}" , apiInvoker.toPathValue(rotateFlipMethod));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]rotateFlipMethod.*?(?=&|\\?|$)", "");
     if(outPath!=null)
-      queryParams.put("outPath", String.valueOf(outPath));
+	  resourcePath = resourcePath.replace("{" + "outPath" + "}" , apiInvoker.toPathValue(outPath));
+	  else
+	  resourcePath = resourcePath.replaceAll("[&?]outPath.*?(?=&|\\?|$)", "");
     String[] contentTypes = {
       "multipart/form-data"};
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
 
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
+if(contentType.startsWith("multipart/form-data")) {      
       FormDataMultiPart mp = new FormDataMultiPart();
-      hasFields = true;
       mp.field("file", file, MediaType.MULTIPART_FORM_DATA_TYPE);
-      if(hasFields)
         postBody = mp;
     }
-    try {
-		response = apiInvoker.invokeAPI(basePath, path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+try {
+		response = apiInvoker.invokeAPI(basePath, resourcePath, "POST", queryParams, postBody, headerParams, formParams, contentType);
 		return (ResponseMessage) ApiInvoker.deserialize(response, "", ResponseMessage.class);
     } catch (ApiException ex) {
       if(ex.getCode() == 404) {

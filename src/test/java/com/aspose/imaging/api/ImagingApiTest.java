@@ -7,7 +7,6 @@ package com.aspose.imaging.api;
 
 import com.aspose.imaging.model.ImagingResponse;
 import com.aspose.imaging.model.ResponseMessage;
-
 import com.aspose.client.ApiException;
 
 import org.junit.After;
@@ -15,18 +14,20 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 /**
  *
- * @author SQL
+ * @author Imran Answar
  */
 public class ImagingApiTest {
 
 	ImagingApi imaging;
-		// Imran Anwar
-		String appSID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
-		String apiKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+	
+	String appSID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+        String apiKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+
 		
 	public ImagingApiTest() {
 	}
@@ -41,11 +42,9 @@ public class ImagingApiTest {
 
 	@Before
 	public void setUp() {
-		imaging = new ImagingApi();
+		imaging = new ImagingApi("http://api.aspose.com/v1.1",apiKey,appSID);
 		imaging.setBasePath("http://api.aspose.com/v1.1");
-		imaging.getInvoker().addDefaultHeader("apiKey", apiKey);
-		imaging.getInvoker().addDefaultHeader("appSID", appSID);
-
+		
 	}
 
 	@After
@@ -216,12 +215,12 @@ public class ImagingApiTest {
 	public void testGetImageGif() {
 		System.out.println("GetImageGif");
 		String name = "digi.gif";
-		String backgroundColorIndex = "";
-		String colorResolution = "";
+		Integer backgroundColorIndex = null;
+		Integer colorResolution = null;
 		Boolean hasTrailer = true;
 		Boolean interlaced = true;
 		Boolean isPaletteSorted = true;
-		String pixelAspectRatio = "";
+		Integer pixelAspectRatio = null;
 		Boolean fromScratch = true;
 		String outPath = "";
 		String folder = "";
@@ -322,7 +321,7 @@ public class ImagingApiTest {
 	public void testGetImagePng() {
 		System.out.println("GetImagePng");
 		String name = "barcode1.png";
-		Boolean fromScratch = null;
+		Boolean fromScratch = true;
 		String outPath = "";
 		String folder = "";
 		String storage = "";
@@ -388,10 +387,10 @@ public class ImagingApiTest {
 	public void testGetImagePsd() {
 		System.out.println("GetImagePsd");
 		String name = "test.psd";
-		Integer channelsCount = null;
-		String compressionMethod = "";
-		Boolean fromScratch = null;
-		String outPath = "";
+		Integer channelsCount = 1;
+		String compressionMethod = "raw";
+		Boolean fromScratch = false;
+		String outPath = "updatedImage.psd";
 		String folder = "";
 		String storage = "";
 

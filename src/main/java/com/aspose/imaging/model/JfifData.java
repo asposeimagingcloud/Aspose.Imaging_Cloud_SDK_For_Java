@@ -6,73 +6,73 @@ public class JfifData {
   private Integer XDensity = null;
   private Integer YDensity = null;
   /**
-	 * getDensityUnits
-	 * Gets String
-	 * @return DensityUnits
-	 */
+         * getDensityUnits
+         * Gets String
+         * @return DensityUnits
+         */
   public String getDensityUnits() {
     return DensityUnits;
   }
 
-	/**
-	 * setDensityUnits
-	 * Sets String
-	 * @param DensityUnits String
-	 */
+        /**
+         * setDensityUnits
+         * Sets String
+         * @param DensityUnits String
+         */
   public void setDensityUnits(String DensityUnits) {
     this.DensityUnits = DensityUnits;
   }
 
   /**
-	 * getVersion
-	 * Gets Integer
-	 * @return Version
-	 */
+         * getVersion
+         * Gets Integer
+         * @return Version
+         */
   public Integer getVersion() {
     return Version;
   }
 
-	/**
-	 * setVersion
-	 * Sets Integer
-	 * @param Version Integer
-	 */
+        /**
+         * setVersion
+         * Sets Integer
+         * @param Version Integer
+         */
   public void setVersion(Integer Version) {
     this.Version = Version;
   }
 
   /**
-	 * getXDensity
-	 * Gets Integer
-	 * @return XDensity
-	 */
+         * getXDensity
+         * Gets Integer
+         * @return XDensity
+         */
   public Integer getXDensity() {
     return XDensity;
   }
 
-	/**
-	 * setXDensity
-	 * Sets Integer
-	 * @param XDensity Integer
-	 */
+        /**
+         * setXDensity
+         * Sets Integer
+         * @param XDensity Integer
+         */
   public void setXDensity(Integer XDensity) {
     this.XDensity = XDensity;
   }
 
   /**
-	 * getYDensity
-	 * Gets Integer
-	 * @return YDensity
-	 */
+         * getYDensity
+         * Gets Integer
+         * @return YDensity
+         */
   public Integer getYDensity() {
     return YDensity;
   }
 
-	/**
-	 * setYDensity
-	 * Sets Integer
-	 * @param YDensity Integer
-	 */
+        /**
+         * setYDensity
+         * Sets Integer
+         * @param YDensity Integer
+         */
   public void setYDensity(Integer YDensity) {
     this.YDensity = YDensity;
   }

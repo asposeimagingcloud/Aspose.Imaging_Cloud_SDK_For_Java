@@ -101,7 +101,7 @@ public class JpegExifData {
   private String RelatedSoundFile = null;
   private String Saturation = null;
   private String SceneCaptureType = null;
-  private String SceneType = null;
+  private Integer SceneType = null;
   private String SensingMethod = null;
   private Integer SensitivityType = null;
   private Integer Sharpness = null;
@@ -120,2107 +120,2107 @@ public class JpegExifData {
   private String WhiteBalance = null;
   private List<Double> WhitePoint = new ArrayList<Double>();
   /**
-	 * getArtist
-	 * Gets String
-	 * @return Artist
-	 */
+         * getArtist
+         * Gets String
+         * @return Artist
+         */
   public String getArtist() {
     return Artist;
   }
 
-	/**
-	 * setArtist
-	 * Sets String
-	 * @param Artist String
-	 */
+        /**
+         * setArtist
+         * Sets String
+         * @param Artist String
+         */
   public void setArtist(String Artist) {
     this.Artist = Artist;
   }
 
   /**
-	 * getCopyright
-	 * Gets String
-	 * @return Copyright
-	 */
+         * getCopyright
+         * Gets String
+         * @return Copyright
+         */
   public String getCopyright() {
     return Copyright;
   }
 
-	/**
-	 * setCopyright
-	 * Sets String
-	 * @param Copyright String
-	 */
+        /**
+         * setCopyright
+         * Sets String
+         * @param Copyright String
+         */
   public void setCopyright(String Copyright) {
     this.Copyright = Copyright;
   }
 
   /**
-	 * getDateTime
-	 * Gets String
-	 * @return DateTime
-	 */
+         * getDateTime
+         * Gets String
+         * @return DateTime
+         */
   public String getDateTime() {
     return DateTime;
   }
 
-	/**
-	 * setDateTime
-	 * Sets String
-	 * @param DateTime String
-	 */
+        /**
+         * setDateTime
+         * Sets String
+         * @param DateTime String
+         */
   public void setDateTime(String DateTime) {
     this.DateTime = DateTime;
   }
 
   /**
-	 * getImageDescription
-	 * Gets String
-	 * @return ImageDescription
-	 */
+         * getImageDescription
+         * Gets String
+         * @return ImageDescription
+         */
   public String getImageDescription() {
     return ImageDescription;
   }
 
-	/**
-	 * setImageDescription
-	 * Sets String
-	 * @param ImageDescription String
-	 */
+        /**
+         * setImageDescription
+         * Sets String
+         * @param ImageDescription String
+         */
   public void setImageDescription(String ImageDescription) {
     this.ImageDescription = ImageDescription;
   }
 
   /**
-	 * getMake
-	 * Gets String
-	 * @return Make
-	 */
+         * getMake
+         * Gets String
+         * @return Make
+         */
   public String getMake() {
     return Make;
   }
 
-	/**
-	 * setMake
-	 * Sets String
-	 * @param Make String
-	 */
+        /**
+         * setMake
+         * Sets String
+         * @param Make String
+         */
   public void setMake(String Make) {
     this.Make = Make;
   }
 
   /**
-	 * getModel
-	 * Gets String
-	 * @return Model
-	 */
+         * getModel
+         * Gets String
+         * @return Model
+         */
   public String getModel() {
     return Model;
   }
 
-	/**
-	 * setModel
-	 * Sets String
-	 * @param Model String
-	 */
+        /**
+         * setModel
+         * Sets String
+         * @param Model String
+         */
   public void setModel(String Model) {
     this.Model = Model;
   }
 
   /**
-	 * getOrientation
-	 * Gets String
-	 * @return Orientation
-	 */
+         * getOrientation
+         * Gets String
+         * @return Orientation
+         */
   public String getOrientation() {
     return Orientation;
   }
 
-	/**
-	 * setOrientation
-	 * Sets String
-	 * @param Orientation String
-	 */
+        /**
+         * setOrientation
+         * Sets String
+         * @param Orientation String
+         */
   public void setOrientation(String Orientation) {
     this.Orientation = Orientation;
   }
 
   /**
-	 * getPrimaryChromaticities
-	 * Gets List<Double>
-	 * @return PrimaryChromaticities
-	 */
+         * getPrimaryChromaticities
+         * Gets List<Double>
+         * @return PrimaryChromaticities
+         */
   public List<Double> getPrimaryChromaticities() {
     return PrimaryChromaticities;
   }
 
-	/**
-	 * setPrimaryChromaticities
-	 * Sets List<Double>
-	 * @param PrimaryChromaticities List<Double>
-	 */
+        /**
+         * setPrimaryChromaticities
+         * Sets List<Double>
+         * @param PrimaryChromaticities List<Double>
+         */
   public void setPrimaryChromaticities(List<Double> PrimaryChromaticities) {
     this.PrimaryChromaticities = PrimaryChromaticities;
   }
 
   /**
-	 * getReferenceBlackWhite
-	 * Gets List<Double>
-	 * @return ReferenceBlackWhite
-	 */
+         * getReferenceBlackWhite
+         * Gets List<Double>
+         * @return ReferenceBlackWhite
+         */
   public List<Double> getReferenceBlackWhite() {
     return ReferenceBlackWhite;
   }
 
-	/**
-	 * setReferenceBlackWhite
-	 * Sets List<Double>
-	 * @param ReferenceBlackWhite List<Double>
-	 */
+        /**
+         * setReferenceBlackWhite
+         * Sets List<Double>
+         * @param ReferenceBlackWhite List<Double>
+         */
   public void setReferenceBlackWhite(List<Double> ReferenceBlackWhite) {
     this.ReferenceBlackWhite = ReferenceBlackWhite;
   }
 
   /**
-	 * getResolutionUnit
-	 * Gets String
-	 * @return ResolutionUnit
-	 */
+         * getResolutionUnit
+         * Gets String
+         * @return ResolutionUnit
+         */
   public String getResolutionUnit() {
     return ResolutionUnit;
   }
 
-	/**
-	 * setResolutionUnit
-	 * Sets String
-	 * @param ResolutionUnit String
-	 */
+        /**
+         * setResolutionUnit
+         * Sets String
+         * @param ResolutionUnit String
+         */
   public void setResolutionUnit(String ResolutionUnit) {
     this.ResolutionUnit = ResolutionUnit;
   }
 
   /**
-	 * getSoftware
-	 * Gets String
-	 * @return Software
-	 */
+         * getSoftware
+         * Gets String
+         * @return Software
+         */
   public String getSoftware() {
     return Software;
   }
 
-	/**
-	 * setSoftware
-	 * Sets String
-	 * @param Software String
-	 */
+        /**
+         * setSoftware
+         * Sets String
+         * @param Software String
+         */
   public void setSoftware(String Software) {
     this.Software = Software;
   }
 
   /**
-	 * getTransferFunction
-	 * Gets List<Integer>
-	 * @return TransferFunction
-	 */
+         * getTransferFunction
+         * Gets List<Integer>
+         * @return TransferFunction
+         */
   public List<Integer> getTransferFunction() {
     return TransferFunction;
   }
 
-	/**
-	 * setTransferFunction
-	 * Sets List<Integer>
-	 * @param TransferFunction List<Integer>
-	 */
+        /**
+         * setTransferFunction
+         * Sets List<Integer>
+         * @param TransferFunction List<Integer>
+         */
   public void setTransferFunction(List<Integer> TransferFunction) {
     this.TransferFunction = TransferFunction;
   }
 
   /**
-	 * getXResolution
-	 * Gets Double
-	 * @return XResolution
-	 */
+         * getXResolution
+         * Gets Double
+         * @return XResolution
+         */
   public Double getXResolution() {
     return XResolution;
   }
 
-	/**
-	 * setXResolution
-	 * Sets Double
-	 * @param XResolution Double
-	 */
+        /**
+         * setXResolution
+         * Sets Double
+         * @param XResolution Double
+         */
   public void setXResolution(Double XResolution) {
     this.XResolution = XResolution;
   }
 
   /**
-	 * getYCbCrCoefficients
-	 * Gets List<Double>
-	 * @return YCbCrCoefficients
-	 */
+         * getYCbCrCoefficients
+         * Gets List<Double>
+         * @return YCbCrCoefficients
+         */
   public List<Double> getYCbCrCoefficients() {
     return YCbCrCoefficients;
   }
 
-	/**
-	 * setYCbCrCoefficients
-	 * Sets List<Double>
-	 * @param YCbCrCoefficients List<Double>
-	 */
+        /**
+         * setYCbCrCoefficients
+         * Sets List<Double>
+         * @param YCbCrCoefficients List<Double>
+         */
   public void setYCbCrCoefficients(List<Double> YCbCrCoefficients) {
     this.YCbCrCoefficients = YCbCrCoefficients;
   }
 
   /**
-	 * getYCbCrPositioning
-	 * Gets String
-	 * @return YCbCrPositioning
-	 */
+         * getYCbCrPositioning
+         * Gets String
+         * @return YCbCrPositioning
+         */
   public String getYCbCrPositioning() {
     return YCbCrPositioning;
   }
 
-	/**
-	 * setYCbCrPositioning
-	 * Sets String
-	 * @param YCbCrPositioning String
-	 */
+        /**
+         * setYCbCrPositioning
+         * Sets String
+         * @param YCbCrPositioning String
+         */
   public void setYCbCrPositioning(String YCbCrPositioning) {
     this.YCbCrPositioning = YCbCrPositioning;
   }
 
   /**
-	 * getYResolution
-	 * Gets Double
-	 * @return YResolution
-	 */
+         * getYResolution
+         * Gets Double
+         * @return YResolution
+         */
   public Double getYResolution() {
     return YResolution;
   }
 
-	/**
-	 * setYResolution
-	 * Sets Double
-	 * @param YResolution Double
-	 */
+        /**
+         * setYResolution
+         * Sets Double
+         * @param YResolution Double
+         */
   public void setYResolution(Double YResolution) {
     this.YResolution = YResolution;
   }
 
   /**
-	 * getApertureValue
-	 * Gets Double
-	 * @return ApertureValue
-	 */
+         * getApertureValue
+         * Gets Double
+         * @return ApertureValue
+         */
   public Double getApertureValue() {
     return ApertureValue;
   }
 
-	/**
-	 * setApertureValue
-	 * Sets Double
-	 * @param ApertureValue Double
-	 */
+        /**
+         * setApertureValue
+         * Sets Double
+         * @param ApertureValue Double
+         */
   public void setApertureValue(Double ApertureValue) {
     this.ApertureValue = ApertureValue;
   }
 
   /**
-	 * getBodySerialNumber
-	 * Gets String
-	 * @return BodySerialNumber
-	 */
+         * getBodySerialNumber
+         * Gets String
+         * @return BodySerialNumber
+         */
   public String getBodySerialNumber() {
     return BodySerialNumber;
   }
 
-	/**
-	 * setBodySerialNumber
-	 * Sets String
-	 * @param BodySerialNumber String
-	 */
+        /**
+         * setBodySerialNumber
+         * Sets String
+         * @param BodySerialNumber String
+         */
   public void setBodySerialNumber(String BodySerialNumber) {
     this.BodySerialNumber = BodySerialNumber;
   }
 
   /**
-	 * getBrightnessValue
-	 * Gets Double
-	 * @return BrightnessValue
-	 */
+         * getBrightnessValue
+         * Gets Double
+         * @return BrightnessValue
+         */
   public Double getBrightnessValue() {
     return BrightnessValue;
   }
 
-	/**
-	 * setBrightnessValue
-	 * Sets Double
-	 * @param BrightnessValue Double
-	 */
+        /**
+         * setBrightnessValue
+         * Sets Double
+         * @param BrightnessValue Double
+         */
   public void setBrightnessValue(Double BrightnessValue) {
     this.BrightnessValue = BrightnessValue;
   }
 
   /**
-	 * getCFAPattern
-	 * Gets String
-	 * @return CFAPattern
-	 */
+         * getCFAPattern
+         * Gets String
+         * @return CFAPattern
+         */
   public String getCFAPattern() {
     return CFAPattern;
   }
 
-	/**
-	 * setCFAPattern
-	 * Sets String
-	 * @param CFAPattern String
-	 */
+        /**
+         * setCFAPattern
+         * Sets String
+         * @param CFAPattern String
+         */
   public void setCFAPattern(String CFAPattern) {
     this.CFAPattern = CFAPattern;
   }
 
   /**
-	 * getCameraOwnerName
-	 * Gets String
-	 * @return CameraOwnerName
-	 */
+         * getCameraOwnerName
+         * Gets String
+         * @return CameraOwnerName
+         */
   public String getCameraOwnerName() {
     return CameraOwnerName;
   }
 
-	/**
-	 * setCameraOwnerName
-	 * Sets String
-	 * @param CameraOwnerName String
-	 */
+        /**
+         * setCameraOwnerName
+         * Sets String
+         * @param CameraOwnerName String
+         */
   public void setCameraOwnerName(String CameraOwnerName) {
     this.CameraOwnerName = CameraOwnerName;
   }
 
   /**
-	 * getColorSpace
-	 * Gets String
-	 * @return ColorSpace
-	 */
+         * getColorSpace
+         * Gets String
+         * @return ColorSpace
+         */
   public String getColorSpace() {
     return ColorSpace;
   }
 
-	/**
-	 * setColorSpace
-	 * Sets String
-	 * @param ColorSpace String
-	 */
+        /**
+         * setColorSpace
+         * Sets String
+         * @param ColorSpace String
+         */
   public void setColorSpace(String ColorSpace) {
     this.ColorSpace = ColorSpace;
   }
 
   /**
-	 * getComponentsConfiguration
-	 * Gets String
-	 * @return ComponentsConfiguration
-	 */
+         * getComponentsConfiguration
+         * Gets String
+         * @return ComponentsConfiguration
+         */
   public String getComponentsConfiguration() {
     return ComponentsConfiguration;
   }
 
-	/**
-	 * setComponentsConfiguration
-	 * Sets String
-	 * @param ComponentsConfiguration String
-	 */
+        /**
+         * setComponentsConfiguration
+         * Sets String
+         * @param ComponentsConfiguration String
+         */
   public void setComponentsConfiguration(String ComponentsConfiguration) {
     this.ComponentsConfiguration = ComponentsConfiguration;
   }
 
   /**
-	 * getCompressedBitsPerPixel
-	 * Gets Double
-	 * @return CompressedBitsPerPixel
-	 */
+         * getCompressedBitsPerPixel
+         * Gets Double
+         * @return CompressedBitsPerPixel
+         */
   public Double getCompressedBitsPerPixel() {
     return CompressedBitsPerPixel;
   }
 
-	/**
-	 * setCompressedBitsPerPixel
-	 * Sets Double
-	 * @param CompressedBitsPerPixel Double
-	 */
+        /**
+         * setCompressedBitsPerPixel
+         * Sets Double
+         * @param CompressedBitsPerPixel Double
+         */
   public void setCompressedBitsPerPixel(Double CompressedBitsPerPixel) {
     this.CompressedBitsPerPixel = CompressedBitsPerPixel;
   }
 
   /**
-	 * getContrast
-	 * Gets String
-	 * @return Contrast
-	 */
+         * getContrast
+         * Gets String
+         * @return Contrast
+         */
   public String getContrast() {
     return Contrast;
   }
 
-	/**
-	 * setContrast
-	 * Sets String
-	 * @param Contrast String
-	 */
+        /**
+         * setContrast
+         * Sets String
+         * @param Contrast String
+         */
   public void setContrast(String Contrast) {
     this.Contrast = Contrast;
   }
 
   /**
-	 * getCustomRendered
-	 * Gets String
-	 * @return CustomRendered
-	 */
+         * getCustomRendered
+         * Gets String
+         * @return CustomRendered
+         */
   public String getCustomRendered() {
     return CustomRendered;
   }
 
-	/**
-	 * setCustomRendered
-	 * Sets String
-	 * @param CustomRendered String
-	 */
+        /**
+         * setCustomRendered
+         * Sets String
+         * @param CustomRendered String
+         */
   public void setCustomRendered(String CustomRendered) {
     this.CustomRendered = CustomRendered;
   }
 
   /**
-	 * getDateTimeDigitized
-	 * Gets String
-	 * @return DateTimeDigitized
-	 */
+         * getDateTimeDigitized
+         * Gets String
+         * @return DateTimeDigitized
+         */
   public String getDateTimeDigitized() {
     return DateTimeDigitized;
   }
 
-	/**
-	 * setDateTimeDigitized
-	 * Sets String
-	 * @param DateTimeDigitized String
-	 */
+        /**
+         * setDateTimeDigitized
+         * Sets String
+         * @param DateTimeDigitized String
+         */
   public void setDateTimeDigitized(String DateTimeDigitized) {
     this.DateTimeDigitized = DateTimeDigitized;
   }
 
   /**
-	 * getDateTimeOriginal
-	 * Gets String
-	 * @return DateTimeOriginal
-	 */
+         * getDateTimeOriginal
+         * Gets String
+         * @return DateTimeOriginal
+         */
   public String getDateTimeOriginal() {
     return DateTimeOriginal;
   }
 
-	/**
-	 * setDateTimeOriginal
-	 * Sets String
-	 * @param DateTimeOriginal String
-	 */
+        /**
+         * setDateTimeOriginal
+         * Sets String
+         * @param DateTimeOriginal String
+         */
   public void setDateTimeOriginal(String DateTimeOriginal) {
     this.DateTimeOriginal = DateTimeOriginal;
   }
 
   /**
-	 * getDeviceSettingDescription
-	 * Gets String
-	 * @return DeviceSettingDescription
-	 */
+         * getDeviceSettingDescription
+         * Gets String
+         * @return DeviceSettingDescription
+         */
   public String getDeviceSettingDescription() {
     return DeviceSettingDescription;
   }
 
-	/**
-	 * setDeviceSettingDescription
-	 * Sets String
-	 * @param DeviceSettingDescription String
-	 */
+        /**
+         * setDeviceSettingDescription
+         * Sets String
+         * @param DeviceSettingDescription String
+         */
   public void setDeviceSettingDescription(String DeviceSettingDescription) {
     this.DeviceSettingDescription = DeviceSettingDescription;
   }
 
   /**
-	 * getDigitalZoomRatio
-	 * Gets Double
-	 * @return DigitalZoomRatio
-	 */
+         * getDigitalZoomRatio
+         * Gets Double
+         * @return DigitalZoomRatio
+         */
   public Double getDigitalZoomRatio() {
     return DigitalZoomRatio;
   }
 
-	/**
-	 * setDigitalZoomRatio
-	 * Sets Double
-	 * @param DigitalZoomRatio Double
-	 */
+        /**
+         * setDigitalZoomRatio
+         * Sets Double
+         * @param DigitalZoomRatio Double
+         */
   public void setDigitalZoomRatio(Double DigitalZoomRatio) {
     this.DigitalZoomRatio = DigitalZoomRatio;
   }
 
   /**
-	 * getExifVersion
-	 * Gets String
-	 * @return ExifVersion
-	 */
+         * getExifVersion
+         * Gets String
+         * @return ExifVersion
+         */
   public String getExifVersion() {
     return ExifVersion;
   }
 
-	/**
-	 * setExifVersion
-	 * Sets String
-	 * @param ExifVersion String
-	 */
+        /**
+         * setExifVersion
+         * Sets String
+         * @param ExifVersion String
+         */
   public void setExifVersion(String ExifVersion) {
     this.ExifVersion = ExifVersion;
   }
 
   /**
-	 * getExposureBiasValue
-	 * Gets Double
-	 * @return ExposureBiasValue
-	 */
+         * getExposureBiasValue
+         * Gets Double
+         * @return ExposureBiasValue
+         */
   public Double getExposureBiasValue() {
     return ExposureBiasValue;
   }
 
-	/**
-	 * setExposureBiasValue
-	 * Sets Double
-	 * @param ExposureBiasValue Double
-	 */
+        /**
+         * setExposureBiasValue
+         * Sets Double
+         * @param ExposureBiasValue Double
+         */
   public void setExposureBiasValue(Double ExposureBiasValue) {
     this.ExposureBiasValue = ExposureBiasValue;
   }
 
   /**
-	 * getExposureIndex
-	 * Gets Double
-	 * @return ExposureIndex
-	 */
+         * getExposureIndex
+         * Gets Double
+         * @return ExposureIndex
+         */
   public Double getExposureIndex() {
     return ExposureIndex;
   }
 
-	/**
-	 * setExposureIndex
-	 * Sets Double
-	 * @param ExposureIndex Double
-	 */
+        /**
+         * setExposureIndex
+         * Sets Double
+         * @param ExposureIndex Double
+         */
   public void setExposureIndex(Double ExposureIndex) {
     this.ExposureIndex = ExposureIndex;
   }
 
   /**
-	 * getExposureMode
-	 * Gets String
-	 * @return ExposureMode
-	 */
+         * getExposureMode
+         * Gets String
+         * @return ExposureMode
+         */
   public String getExposureMode() {
     return ExposureMode;
   }
 
-	/**
-	 * setExposureMode
-	 * Sets String
-	 * @param ExposureMode String
-	 */
+        /**
+         * setExposureMode
+         * Sets String
+         * @param ExposureMode String
+         */
   public void setExposureMode(String ExposureMode) {
     this.ExposureMode = ExposureMode;
   }
 
   /**
-	 * getExposureProgram
-	 * Gets String
-	 * @return ExposureProgram
-	 */
+         * getExposureProgram
+         * Gets String
+         * @return ExposureProgram
+         */
   public String getExposureProgram() {
     return ExposureProgram;
   }
 
-	/**
-	 * setExposureProgram
-	 * Sets String
-	 * @param ExposureProgram String
-	 */
+        /**
+         * setExposureProgram
+         * Sets String
+         * @param ExposureProgram String
+         */
   public void setExposureProgram(String ExposureProgram) {
     this.ExposureProgram = ExposureProgram;
   }
 
   /**
-	 * getExposureTime
-	 * Gets Double
-	 * @return ExposureTime
-	 */
+         * getExposureTime
+         * Gets Double
+         * @return ExposureTime
+         */
   public Double getExposureTime() {
     return ExposureTime;
   }
 
-	/**
-	 * setExposureTime
-	 * Sets Double
-	 * @param ExposureTime Double
-	 */
+        /**
+         * setExposureTime
+         * Sets Double
+         * @param ExposureTime Double
+         */
   public void setExposureTime(Double ExposureTime) {
     this.ExposureTime = ExposureTime;
   }
 
   /**
-	 * getFNumber
-	 * Gets Double
-	 * @return FNumber
-	 */
+         * getFNumber
+         * Gets Double
+         * @return FNumber
+         */
   public Double getFNumber() {
     return FNumber;
   }
 
-	/**
-	 * setFNumber
-	 * Sets Double
-	 * @param FNumber Double
-	 */
+        /**
+         * setFNumber
+         * Sets Double
+         * @param FNumber Double
+         */
   public void setFNumber(Double FNumber) {
     this.FNumber = FNumber;
   }
 
   /**
-	 * getFileSource
-	 * Gets String
-	 * @return FileSource
-	 */
+         * getFileSource
+         * Gets String
+         * @return FileSource
+         */
   public String getFileSource() {
     return FileSource;
   }
 
-	/**
-	 * setFileSource
-	 * Sets String
-	 * @param FileSource String
-	 */
+        /**
+         * setFileSource
+         * Sets String
+         * @param FileSource String
+         */
   public void setFileSource(String FileSource) {
     this.FileSource = FileSource;
   }
 
   /**
-	 * getFlash
-	 * Gets String
-	 * @return Flash
-	 */
+         * getFlash
+         * Gets String
+         * @return Flash
+         */
   public String getFlash() {
     return Flash;
   }
 
-	/**
-	 * setFlash
-	 * Sets String
-	 * @param Flash String
-	 */
+        /**
+         * setFlash
+         * Sets String
+         * @param Flash String
+         */
   public void setFlash(String Flash) {
     this.Flash = Flash;
   }
 
   /**
-	 * getFlashEnergy
-	 * Gets Double
-	 * @return FlashEnergy
-	 */
+         * getFlashEnergy
+         * Gets Double
+         * @return FlashEnergy
+         */
   public Double getFlashEnergy() {
     return FlashEnergy;
   }
 
-	/**
-	 * setFlashEnergy
-	 * Sets Double
-	 * @param FlashEnergy Double
-	 */
+        /**
+         * setFlashEnergy
+         * Sets Double
+         * @param FlashEnergy Double
+         */
   public void setFlashEnergy(Double FlashEnergy) {
     this.FlashEnergy = FlashEnergy;
   }
 
   /**
-	 * getFlashpixVersion
-	 * Gets String
-	 * @return FlashpixVersion
-	 */
+         * getFlashpixVersion
+         * Gets String
+         * @return FlashpixVersion
+         */
   public String getFlashpixVersion() {
     return FlashpixVersion;
   }
 
-	/**
-	 * setFlashpixVersion
-	 * Sets String
-	 * @param FlashpixVersion String
-	 */
+        /**
+         * setFlashpixVersion
+         * Sets String
+         * @param FlashpixVersion String
+         */
   public void setFlashpixVersion(String FlashpixVersion) {
     this.FlashpixVersion = FlashpixVersion;
   }
 
   /**
-	 * getFocalLength
-	 * Gets Double
-	 * @return FocalLength
-	 */
+         * getFocalLength
+         * Gets Double
+         * @return FocalLength
+         */
   public Double getFocalLength() {
     return FocalLength;
   }
 
-	/**
-	 * setFocalLength
-	 * Sets Double
-	 * @param FocalLength Double
-	 */
+        /**
+         * setFocalLength
+         * Sets Double
+         * @param FocalLength Double
+         */
   public void setFocalLength(Double FocalLength) {
     this.FocalLength = FocalLength;
   }
 
   /**
-	 * getFocalLengthIn35MmFilm
-	 * Gets Integer
-	 * @return FocalLengthIn35MmFilm
-	 */
+         * getFocalLengthIn35MmFilm
+         * Gets Integer
+         * @return FocalLengthIn35MmFilm
+         */
   public Integer getFocalLengthIn35MmFilm() {
     return FocalLengthIn35MmFilm;
   }
 
-	/**
-	 * setFocalLengthIn35MmFilm
-	 * Sets Integer
-	 * @param FocalLengthIn35MmFilm Integer
-	 */
+        /**
+         * setFocalLengthIn35MmFilm
+         * Sets Integer
+         * @param FocalLengthIn35MmFilm Integer
+         */
   public void setFocalLengthIn35MmFilm(Integer FocalLengthIn35MmFilm) {
     this.FocalLengthIn35MmFilm = FocalLengthIn35MmFilm;
   }
 
   /**
-	 * getFocalPlaneResolutionUnit
-	 * Gets String
-	 * @return FocalPlaneResolutionUnit
-	 */
+         * getFocalPlaneResolutionUnit
+         * Gets String
+         * @return FocalPlaneResolutionUnit
+         */
   public String getFocalPlaneResolutionUnit() {
     return FocalPlaneResolutionUnit;
   }
 
-	/**
-	 * setFocalPlaneResolutionUnit
-	 * Sets String
-	 * @param FocalPlaneResolutionUnit String
-	 */
+        /**
+         * setFocalPlaneResolutionUnit
+         * Sets String
+         * @param FocalPlaneResolutionUnit String
+         */
   public void setFocalPlaneResolutionUnit(String FocalPlaneResolutionUnit) {
     this.FocalPlaneResolutionUnit = FocalPlaneResolutionUnit;
   }
 
   /**
-	 * getFocalPlaneXResolution
-	 * Gets Double
-	 * @return FocalPlaneXResolution
-	 */
+         * getFocalPlaneXResolution
+         * Gets Double
+         * @return FocalPlaneXResolution
+         */
   public Double getFocalPlaneXResolution() {
     return FocalPlaneXResolution;
   }
 
-	/**
-	 * setFocalPlaneXResolution
-	 * Sets Double
-	 * @param FocalPlaneXResolution Double
-	 */
+        /**
+         * setFocalPlaneXResolution
+         * Sets Double
+         * @param FocalPlaneXResolution Double
+         */
   public void setFocalPlaneXResolution(Double FocalPlaneXResolution) {
     this.FocalPlaneXResolution = FocalPlaneXResolution;
   }
 
   /**
-	 * getFocalPlaneYResolution
-	 * Gets Double
-	 * @return FocalPlaneYResolution
-	 */
+         * getFocalPlaneYResolution
+         * Gets Double
+         * @return FocalPlaneYResolution
+         */
   public Double getFocalPlaneYResolution() {
     return FocalPlaneYResolution;
   }
 
-	/**
-	 * setFocalPlaneYResolution
-	 * Sets Double
-	 * @param FocalPlaneYResolution Double
-	 */
+        /**
+         * setFocalPlaneYResolution
+         * Sets Double
+         * @param FocalPlaneYResolution Double
+         */
   public void setFocalPlaneYResolution(Double FocalPlaneYResolution) {
     this.FocalPlaneYResolution = FocalPlaneYResolution;
   }
 
   /**
-	 * getGPSAltitude
-	 * Gets Double
-	 * @return GPSAltitude
-	 */
+         * getGPSAltitude
+         * Gets Double
+         * @return GPSAltitude
+         */
   public Double getGPSAltitude() {
     return GPSAltitude;
   }
 
-	/**
-	 * setGPSAltitude
-	 * Sets Double
-	 * @param GPSAltitude Double
-	 */
+        /**
+         * setGPSAltitude
+         * Sets Double
+         * @param GPSAltitude Double
+         */
   public void setGPSAltitude(Double GPSAltitude) {
     this.GPSAltitude = GPSAltitude;
   }
 
   /**
-	 * getGPSAltitudeRef
-	 * Gets String
-	 * @return GPSAltitudeRef
-	 */
+         * getGPSAltitudeRef
+         * Gets String
+         * @return GPSAltitudeRef
+         */
   public String getGPSAltitudeRef() {
     return GPSAltitudeRef;
   }
 
-	/**
-	 * setGPSAltitudeRef
-	 * Sets String
-	 * @param GPSAltitudeRef String
-	 */
+        /**
+         * setGPSAltitudeRef
+         * Sets String
+         * @param GPSAltitudeRef String
+         */
   public void setGPSAltitudeRef(String GPSAltitudeRef) {
     this.GPSAltitudeRef = GPSAltitudeRef;
   }
 
   /**
-	 * getGPSAreaInformation
-	 * Gets String
-	 * @return GPSAreaInformation
-	 */
+         * getGPSAreaInformation
+         * Gets String
+         * @return GPSAreaInformation
+         */
   public String getGPSAreaInformation() {
     return GPSAreaInformation;
   }
 
-	/**
-	 * setGPSAreaInformation
-	 * Sets String
-	 * @param GPSAreaInformation String
-	 */
+        /**
+         * setGPSAreaInformation
+         * Sets String
+         * @param GPSAreaInformation String
+         */
   public void setGPSAreaInformation(String GPSAreaInformation) {
     this.GPSAreaInformation = GPSAreaInformation;
   }
 
   /**
-	 * getGPSDOP
-	 * Gets Double
-	 * @return GPSDOP
-	 */
+         * getGPSDOP
+         * Gets Double
+         * @return GPSDOP
+         */
   public Double getGPSDOP() {
     return GPSDOP;
   }
 
-	/**
-	 * setGPSDOP
-	 * Sets Double
-	 * @param GPSDOP Double
-	 */
+        /**
+         * setGPSDOP
+         * Sets Double
+         * @param GPSDOP Double
+         */
   public void setGPSDOP(Double GPSDOP) {
     this.GPSDOP = GPSDOP;
   }
 
   /**
-	 * getGPSDestBearing
-	 * Gets Double
-	 * @return GPSDestBearing
-	 */
+         * getGPSDestBearing
+         * Gets Double
+         * @return GPSDestBearing
+         */
   public Double getGPSDestBearing() {
     return GPSDestBearing;
   }
 
-	/**
-	 * setGPSDestBearing
-	 * Sets Double
-	 * @param GPSDestBearing Double
-	 */
+        /**
+         * setGPSDestBearing
+         * Sets Double
+         * @param GPSDestBearing Double
+         */
   public void setGPSDestBearing(Double GPSDestBearing) {
     this.GPSDestBearing = GPSDestBearing;
   }
 
   /**
-	 * getGPSDestBearingRef
-	 * Gets String
-	 * @return GPSDestBearingRef
-	 */
+         * getGPSDestBearingRef
+         * Gets String
+         * @return GPSDestBearingRef
+         */
   public String getGPSDestBearingRef() {
     return GPSDestBearingRef;
   }
 
-	/**
-	 * setGPSDestBearingRef
-	 * Sets String
-	 * @param GPSDestBearingRef String
-	 */
+        /**
+         * setGPSDestBearingRef
+         * Sets String
+         * @param GPSDestBearingRef String
+         */
   public void setGPSDestBearingRef(String GPSDestBearingRef) {
     this.GPSDestBearingRef = GPSDestBearingRef;
   }
 
   /**
-	 * getGPSDestDistance
-	 * Gets Double
-	 * @return GPSDestDistance
-	 */
+         * getGPSDestDistance
+         * Gets Double
+         * @return GPSDestDistance
+         */
   public Double getGPSDestDistance() {
     return GPSDestDistance;
   }
 
-	/**
-	 * setGPSDestDistance
-	 * Sets Double
-	 * @param GPSDestDistance Double
-	 */
+        /**
+         * setGPSDestDistance
+         * Sets Double
+         * @param GPSDestDistance Double
+         */
   public void setGPSDestDistance(Double GPSDestDistance) {
     this.GPSDestDistance = GPSDestDistance;
   }
 
   /**
-	 * getGPSDestDistanceRef
-	 * Gets String
-	 * @return GPSDestDistanceRef
-	 */
+         * getGPSDestDistanceRef
+         * Gets String
+         * @return GPSDestDistanceRef
+         */
   public String getGPSDestDistanceRef() {
     return GPSDestDistanceRef;
   }
 
-	/**
-	 * setGPSDestDistanceRef
-	 * Sets String
-	 * @param GPSDestDistanceRef String
-	 */
+        /**
+         * setGPSDestDistanceRef
+         * Sets String
+         * @param GPSDestDistanceRef String
+         */
   public void setGPSDestDistanceRef(String GPSDestDistanceRef) {
     this.GPSDestDistanceRef = GPSDestDistanceRef;
   }
 
   /**
-	 * getGPSDestLatitude
-	 * Gets List<Double>
-	 * @return GPSDestLatitude
-	 */
+         * getGPSDestLatitude
+         * Gets List<Double>
+         * @return GPSDestLatitude
+         */
   public List<Double> getGPSDestLatitude() {
     return GPSDestLatitude;
   }
 
-	/**
-	 * setGPSDestLatitude
-	 * Sets List<Double>
-	 * @param GPSDestLatitude List<Double>
-	 */
+        /**
+         * setGPSDestLatitude
+         * Sets List<Double>
+         * @param GPSDestLatitude List<Double>
+         */
   public void setGPSDestLatitude(List<Double> GPSDestLatitude) {
     this.GPSDestLatitude = GPSDestLatitude;
   }
 
   /**
-	 * getGPSDestLatitudeRef
-	 * Gets String
-	 * @return GPSDestLatitudeRef
-	 */
+         * getGPSDestLatitudeRef
+         * Gets String
+         * @return GPSDestLatitudeRef
+         */
   public String getGPSDestLatitudeRef() {
     return GPSDestLatitudeRef;
   }
 
-	/**
-	 * setGPSDestLatitudeRef
-	 * Sets String
-	 * @param GPSDestLatitudeRef String
-	 */
+        /**
+         * setGPSDestLatitudeRef
+         * Sets String
+         * @param GPSDestLatitudeRef String
+         */
   public void setGPSDestLatitudeRef(String GPSDestLatitudeRef) {
     this.GPSDestLatitudeRef = GPSDestLatitudeRef;
   }
 
   /**
-	 * getGPSDestLongitude
-	 * Gets List<Double>
-	 * @return GPSDestLongitude
-	 */
+         * getGPSDestLongitude
+         * Gets List<Double>
+         * @return GPSDestLongitude
+         */
   public List<Double> getGPSDestLongitude() {
     return GPSDestLongitude;
   }
 
-	/**
-	 * setGPSDestLongitude
-	 * Sets List<Double>
-	 * @param GPSDestLongitude List<Double>
-	 */
+        /**
+         * setGPSDestLongitude
+         * Sets List<Double>
+         * @param GPSDestLongitude List<Double>
+         */
   public void setGPSDestLongitude(List<Double> GPSDestLongitude) {
     this.GPSDestLongitude = GPSDestLongitude;
   }
 
   /**
-	 * getGPSDestLongitudeRef
-	 * Gets String
-	 * @return GPSDestLongitudeRef
-	 */
+         * getGPSDestLongitudeRef
+         * Gets String
+         * @return GPSDestLongitudeRef
+         */
   public String getGPSDestLongitudeRef() {
     return GPSDestLongitudeRef;
   }
 
-	/**
-	 * setGPSDestLongitudeRef
-	 * Sets String
-	 * @param GPSDestLongitudeRef String
-	 */
+        /**
+         * setGPSDestLongitudeRef
+         * Sets String
+         * @param GPSDestLongitudeRef String
+         */
   public void setGPSDestLongitudeRef(String GPSDestLongitudeRef) {
     this.GPSDestLongitudeRef = GPSDestLongitudeRef;
   }
 
   /**
-	 * getGPSDifferential
-	 * Gets Integer
-	 * @return GPSDifferential
-	 */
+         * getGPSDifferential
+         * Gets Integer
+         * @return GPSDifferential
+         */
   public Integer getGPSDifferential() {
     return GPSDifferential;
   }
 
-	/**
-	 * setGPSDifferential
-	 * Sets Integer
-	 * @param GPSDifferential Integer
-	 */
+        /**
+         * setGPSDifferential
+         * Sets Integer
+         * @param GPSDifferential Integer
+         */
   public void setGPSDifferential(Integer GPSDifferential) {
     this.GPSDifferential = GPSDifferential;
   }
 
   /**
-	 * getGPSImgDirection
-	 * Gets Double
-	 * @return GPSImgDirection
-	 */
+         * getGPSImgDirection
+         * Gets Double
+         * @return GPSImgDirection
+         */
   public Double getGPSImgDirection() {
     return GPSImgDirection;
   }
 
-	/**
-	 * setGPSImgDirection
-	 * Sets Double
-	 * @param GPSImgDirection Double
-	 */
+        /**
+         * setGPSImgDirection
+         * Sets Double
+         * @param GPSImgDirection Double
+         */
   public void setGPSImgDirection(Double GPSImgDirection) {
     this.GPSImgDirection = GPSImgDirection;
   }
 
   /**
-	 * getGPSImgDirectionRef
-	 * Gets String
-	 * @return GPSImgDirectionRef
-	 */
+         * getGPSImgDirectionRef
+         * Gets String
+         * @return GPSImgDirectionRef
+         */
   public String getGPSImgDirectionRef() {
     return GPSImgDirectionRef;
   }
 
-	/**
-	 * setGPSImgDirectionRef
-	 * Sets String
-	 * @param GPSImgDirectionRef String
-	 */
+        /**
+         * setGPSImgDirectionRef
+         * Sets String
+         * @param GPSImgDirectionRef String
+         */
   public void setGPSImgDirectionRef(String GPSImgDirectionRef) {
     this.GPSImgDirectionRef = GPSImgDirectionRef;
   }
 
   /**
-	 * getGPSDateStamp
-	 * Gets String
-	 * @return GPSDateStamp
-	 */
+         * getGPSDateStamp
+         * Gets String
+         * @return GPSDateStamp
+         */
   public String getGPSDateStamp() {
     return GPSDateStamp;
   }
 
-	/**
-	 * setGPSDateStamp
-	 * Sets String
-	 * @param GPSDateStamp String
-	 */
+        /**
+         * setGPSDateStamp
+         * Sets String
+         * @param GPSDateStamp String
+         */
   public void setGPSDateStamp(String GPSDateStamp) {
     this.GPSDateStamp = GPSDateStamp;
   }
 
   /**
-	 * getGPSLatitude
-	 * Gets List<Double>
-	 * @return GPSLatitude
-	 */
+         * getGPSLatitude
+         * Gets List<Double>
+         * @return GPSLatitude
+         */
   public List<Double> getGPSLatitude() {
     return GPSLatitude;
   }
 
-	/**
-	 * setGPSLatitude
-	 * Sets List<Double>
-	 * @param GPSLatitude List<Double>
-	 */
+        /**
+         * setGPSLatitude
+         * Sets List<Double>
+         * @param GPSLatitude List<Double>
+         */
   public void setGPSLatitude(List<Double> GPSLatitude) {
     this.GPSLatitude = GPSLatitude;
   }
 
   /**
-	 * getGPSLatitudeRef
-	 * Gets String
-	 * @return GPSLatitudeRef
-	 */
+         * getGPSLatitudeRef
+         * Gets String
+         * @return GPSLatitudeRef
+         */
   public String getGPSLatitudeRef() {
     return GPSLatitudeRef;
   }
 
-	/**
-	 * setGPSLatitudeRef
-	 * Sets String
-	 * @param GPSLatitudeRef String
-	 */
+        /**
+         * setGPSLatitudeRef
+         * Sets String
+         * @param GPSLatitudeRef String
+         */
   public void setGPSLatitudeRef(String GPSLatitudeRef) {
     this.GPSLatitudeRef = GPSLatitudeRef;
   }
 
   /**
-	 * getGPSLongitude
-	 * Gets List<Double>
-	 * @return GPSLongitude
-	 */
+         * getGPSLongitude
+         * Gets List<Double>
+         * @return GPSLongitude
+         */
   public List<Double> getGPSLongitude() {
     return GPSLongitude;
   }
 
-	/**
-	 * setGPSLongitude
-	 * Sets List<Double>
-	 * @param GPSLongitude List<Double>
-	 */
+        /**
+         * setGPSLongitude
+         * Sets List<Double>
+         * @param GPSLongitude List<Double>
+         */
   public void setGPSLongitude(List<Double> GPSLongitude) {
     this.GPSLongitude = GPSLongitude;
   }
 
   /**
-	 * getGPSLongitudeRef
-	 * Gets String
-	 * @return GPSLongitudeRef
-	 */
+         * getGPSLongitudeRef
+         * Gets String
+         * @return GPSLongitudeRef
+         */
   public String getGPSLongitudeRef() {
     return GPSLongitudeRef;
   }
 
-	/**
-	 * setGPSLongitudeRef
-	 * Sets String
-	 * @param GPSLongitudeRef String
-	 */
+        /**
+         * setGPSLongitudeRef
+         * Sets String
+         * @param GPSLongitudeRef String
+         */
   public void setGPSLongitudeRef(String GPSLongitudeRef) {
     this.GPSLongitudeRef = GPSLongitudeRef;
   }
 
   /**
-	 * getGPSMapDatum
-	 * Gets String
-	 * @return GPSMapDatum
-	 */
+         * getGPSMapDatum
+         * Gets String
+         * @return GPSMapDatum
+         */
   public String getGPSMapDatum() {
     return GPSMapDatum;
   }
 
-	/**
-	 * setGPSMapDatum
-	 * Sets String
-	 * @param GPSMapDatum String
-	 */
+        /**
+         * setGPSMapDatum
+         * Sets String
+         * @param GPSMapDatum String
+         */
   public void setGPSMapDatum(String GPSMapDatum) {
     this.GPSMapDatum = GPSMapDatum;
   }
 
   /**
-	 * getGPSMeasureMode
-	 * Gets String
-	 * @return GPSMeasureMode
-	 */
+         * getGPSMeasureMode
+         * Gets String
+         * @return GPSMeasureMode
+         */
   public String getGPSMeasureMode() {
     return GPSMeasureMode;
   }
 
-	/**
-	 * setGPSMeasureMode
-	 * Sets String
-	 * @param GPSMeasureMode String
-	 */
+        /**
+         * setGPSMeasureMode
+         * Sets String
+         * @param GPSMeasureMode String
+         */
   public void setGPSMeasureMode(String GPSMeasureMode) {
     this.GPSMeasureMode = GPSMeasureMode;
   }
 
   /**
-	 * getGPSProcessingMethod
-	 * Gets String
-	 * @return GPSProcessingMethod
-	 */
+         * getGPSProcessingMethod
+         * Gets String
+         * @return GPSProcessingMethod
+         */
   public String getGPSProcessingMethod() {
     return GPSProcessingMethod;
   }
 
-	/**
-	 * setGPSProcessingMethod
-	 * Sets String
-	 * @param GPSProcessingMethod String
-	 */
+        /**
+         * setGPSProcessingMethod
+         * Sets String
+         * @param GPSProcessingMethod String
+         */
   public void setGPSProcessingMethod(String GPSProcessingMethod) {
     this.GPSProcessingMethod = GPSProcessingMethod;
   }
 
   /**
-	 * getGPSSatellites
-	 * Gets String
-	 * @return GPSSatellites
-	 */
+         * getGPSSatellites
+         * Gets String
+         * @return GPSSatellites
+         */
   public String getGPSSatellites() {
     return GPSSatellites;
   }
 
-	/**
-	 * setGPSSatellites
-	 * Sets String
-	 * @param GPSSatellites String
-	 */
+        /**
+         * setGPSSatellites
+         * Sets String
+         * @param GPSSatellites String
+         */
   public void setGPSSatellites(String GPSSatellites) {
     this.GPSSatellites = GPSSatellites;
   }
 
   /**
-	 * getGPSSpeed
-	 * Gets Double
-	 * @return GPSSpeed
-	 */
+         * getGPSSpeed
+         * Gets Double
+         * @return GPSSpeed
+         */
   public Double getGPSSpeed() {
     return GPSSpeed;
   }
 
-	/**
-	 * setGPSSpeed
-	 * Sets Double
-	 * @param GPSSpeed Double
-	 */
+        /**
+         * setGPSSpeed
+         * Sets Double
+         * @param GPSSpeed Double
+         */
   public void setGPSSpeed(Double GPSSpeed) {
     this.GPSSpeed = GPSSpeed;
   }
 
   /**
-	 * getGPSSpeedRef
-	 * Gets String
-	 * @return GPSSpeedRef
-	 */
+         * getGPSSpeedRef
+         * Gets String
+         * @return GPSSpeedRef
+         */
   public String getGPSSpeedRef() {
     return GPSSpeedRef;
   }
 
-	/**
-	 * setGPSSpeedRef
-	 * Sets String
-	 * @param GPSSpeedRef String
-	 */
+        /**
+         * setGPSSpeedRef
+         * Sets String
+         * @param GPSSpeedRef String
+         */
   public void setGPSSpeedRef(String GPSSpeedRef) {
     this.GPSSpeedRef = GPSSpeedRef;
   }
 
   /**
-	 * getGPSStatus
-	 * Gets String
-	 * @return GPSStatus
-	 */
+         * getGPSStatus
+         * Gets String
+         * @return GPSStatus
+         */
   public String getGPSStatus() {
     return GPSStatus;
   }
 
-	/**
-	 * setGPSStatus
-	 * Sets String
-	 * @param GPSStatus String
-	 */
+        /**
+         * setGPSStatus
+         * Sets String
+         * @param GPSStatus String
+         */
   public void setGPSStatus(String GPSStatus) {
     this.GPSStatus = GPSStatus;
   }
 
   /**
-	 * getGPSTimestamp
-	 * Gets List<Double>
-	 * @return GPSTimestamp
-	 */
+         * getGPSTimestamp
+         * Gets List<Double>
+         * @return GPSTimestamp
+         */
   public List<Double> getGPSTimestamp() {
     return GPSTimestamp;
   }
 
-	/**
-	 * setGPSTimestamp
-	 * Sets List<Double>
-	 * @param GPSTimestamp List<Double>
-	 */
+        /**
+         * setGPSTimestamp
+         * Sets List<Double>
+         * @param GPSTimestamp List<Double>
+         */
   public void setGPSTimestamp(List<Double> GPSTimestamp) {
     this.GPSTimestamp = GPSTimestamp;
   }
 
   /**
-	 * getGPSTrack
-	 * Gets String
-	 * @return GPSTrack
-	 */
+         * getGPSTrack
+         * Gets String
+         * @return GPSTrack
+         */
   public String getGPSTrack() {
     return GPSTrack;
   }
 
-	/**
-	 * setGPSTrack
-	 * Sets String
-	 * @param GPSTrack String
-	 */
+        /**
+         * setGPSTrack
+         * Sets String
+         * @param GPSTrack String
+         */
   public void setGPSTrack(String GPSTrack) {
     this.GPSTrack = GPSTrack;
   }
 
   /**
-	 * getGPSTrackRef
-	 * Gets String
-	 * @return GPSTrackRef
-	 */
+         * getGPSTrackRef
+         * Gets String
+         * @return GPSTrackRef
+         */
   public String getGPSTrackRef() {
     return GPSTrackRef;
   }
 
-	/**
-	 * setGPSTrackRef
-	 * Sets String
-	 * @param GPSTrackRef String
-	 */
+        /**
+         * setGPSTrackRef
+         * Sets String
+         * @param GPSTrackRef String
+         */
   public void setGPSTrackRef(String GPSTrackRef) {
     this.GPSTrackRef = GPSTrackRef;
   }
 
   /**
-	 * getGPSVersionID
-	 * Gets String
-	 * @return GPSVersionID
-	 */
+         * getGPSVersionID
+         * Gets String
+         * @return GPSVersionID
+         */
   public String getGPSVersionID() {
     return GPSVersionID;
   }
 
-	/**
-	 * setGPSVersionID
-	 * Sets String
-	 * @param GPSVersionID String
-	 */
+        /**
+         * setGPSVersionID
+         * Sets String
+         * @param GPSVersionID String
+         */
   public void setGPSVersionID(String GPSVersionID) {
     this.GPSVersionID = GPSVersionID;
   }
 
   /**
-	 * getGainControl
-	 * Gets String
-	 * @return GainControl
-	 */
+         * getGainControl
+         * Gets String
+         * @return GainControl
+         */
   public String getGainControl() {
     return GainControl;
   }
 
-	/**
-	 * setGainControl
-	 * Sets String
-	 * @param GainControl String
-	 */
+        /**
+         * setGainControl
+         * Sets String
+         * @param GainControl String
+         */
   public void setGainControl(String GainControl) {
     this.GainControl = GainControl;
   }
 
   /**
-	 * getGamma
-	 * Gets Double
-	 * @return Gamma
-	 */
+         * getGamma
+         * Gets Double
+         * @return Gamma
+         */
   public Double getGamma() {
     return Gamma;
   }
 
-	/**
-	 * setGamma
-	 * Sets Double
-	 * @param Gamma Double
-	 */
+        /**
+         * setGamma
+         * Sets Double
+         * @param Gamma Double
+         */
   public void setGamma(Double Gamma) {
     this.Gamma = Gamma;
   }
 
   /**
-	 * getISOSpeed
-	 * Gets Integer
-	 * @return ISOSpeed
-	 */
+         * getISOSpeed
+         * Gets Integer
+         * @return ISOSpeed
+         */
   public Integer getISOSpeed() {
     return ISOSpeed;
   }
 
-	/**
-	 * setISOSpeed
-	 * Sets Integer
-	 * @param ISOSpeed Integer
-	 */
+        /**
+         * setISOSpeed
+         * Sets Integer
+         * @param ISOSpeed Integer
+         */
   public void setISOSpeed(Integer ISOSpeed) {
     this.ISOSpeed = ISOSpeed;
   }
 
   /**
-	 * getISOSpeedLatitudeYYY
-	 * Gets Integer
-	 * @return ISOSpeedLatitudeYYY
-	 */
+         * getISOSpeedLatitudeYYY
+         * Gets Integer
+         * @return ISOSpeedLatitudeYYY
+         */
   public Integer getISOSpeedLatitudeYYY() {
     return ISOSpeedLatitudeYYY;
   }
 
-	/**
-	 * setISOSpeedLatitudeYYY
-	 * Sets Integer
-	 * @param ISOSpeedLatitudeYYY Integer
-	 */
+        /**
+         * setISOSpeedLatitudeYYY
+         * Sets Integer
+         * @param ISOSpeedLatitudeYYY Integer
+         */
   public void setISOSpeedLatitudeYYY(Integer ISOSpeedLatitudeYYY) {
     this.ISOSpeedLatitudeYYY = ISOSpeedLatitudeYYY;
   }
 
   /**
-	 * getISOSpeedLatitudeZZZ
-	 * Gets Integer
-	 * @return ISOSpeedLatitudeZZZ
-	 */
+         * getISOSpeedLatitudeZZZ
+         * Gets Integer
+         * @return ISOSpeedLatitudeZZZ
+         */
   public Integer getISOSpeedLatitudeZZZ() {
     return ISOSpeedLatitudeZZZ;
   }
 
-	/**
-	 * setISOSpeedLatitudeZZZ
-	 * Sets Integer
-	 * @param ISOSpeedLatitudeZZZ Integer
-	 */
+        /**
+         * setISOSpeedLatitudeZZZ
+         * Sets Integer
+         * @param ISOSpeedLatitudeZZZ Integer
+         */
   public void setISOSpeedLatitudeZZZ(Integer ISOSpeedLatitudeZZZ) {
     this.ISOSpeedLatitudeZZZ = ISOSpeedLatitudeZZZ;
   }
 
   /**
-	 * getPhotographicSensitivity
-	 * Gets Integer
-	 * @return PhotographicSensitivity
-	 */
+         * getPhotographicSensitivity
+         * Gets Integer
+         * @return PhotographicSensitivity
+         */
   public Integer getPhotographicSensitivity() {
     return PhotographicSensitivity;
   }
 
-	/**
-	 * setPhotographicSensitivity
-	 * Sets Integer
-	 * @param PhotographicSensitivity Integer
-	 */
+        /**
+         * setPhotographicSensitivity
+         * Sets Integer
+         * @param PhotographicSensitivity Integer
+         */
   public void setPhotographicSensitivity(Integer PhotographicSensitivity) {
     this.PhotographicSensitivity = PhotographicSensitivity;
   }
 
   /**
-	 * getImageUniqueID
-	 * Gets String
-	 * @return ImageUniqueID
-	 */
+         * getImageUniqueID
+         * Gets String
+         * @return ImageUniqueID
+         */
   public String getImageUniqueID() {
     return ImageUniqueID;
   }
 
-	/**
-	 * setImageUniqueID
-	 * Sets String
-	 * @param ImageUniqueID String
-	 */
+        /**
+         * setImageUniqueID
+         * Sets String
+         * @param ImageUniqueID String
+         */
   public void setImageUniqueID(String ImageUniqueID) {
     this.ImageUniqueID = ImageUniqueID;
   }
 
   /**
-	 * getLensMake
-	 * Gets String
-	 * @return LensMake
-	 */
+         * getLensMake
+         * Gets String
+         * @return LensMake
+         */
   public String getLensMake() {
     return LensMake;
   }
 
-	/**
-	 * setLensMake
-	 * Sets String
-	 * @param LensMake String
-	 */
+        /**
+         * setLensMake
+         * Sets String
+         * @param LensMake String
+         */
   public void setLensMake(String LensMake) {
     this.LensMake = LensMake;
   }
 
   /**
-	 * getLensModel
-	 * Gets String
-	 * @return LensModel
-	 */
+         * getLensModel
+         * Gets String
+         * @return LensModel
+         */
   public String getLensModel() {
     return LensModel;
   }
 
-	/**
-	 * setLensModel
-	 * Sets String
-	 * @param LensModel String
-	 */
+        /**
+         * setLensModel
+         * Sets String
+         * @param LensModel String
+         */
   public void setLensModel(String LensModel) {
     this.LensModel = LensModel;
   }
 
   /**
-	 * getLensSerialNumber
-	 * Gets String
-	 * @return LensSerialNumber
-	 */
+         * getLensSerialNumber
+         * Gets String
+         * @return LensSerialNumber
+         */
   public String getLensSerialNumber() {
     return LensSerialNumber;
   }
 
-	/**
-	 * setLensSerialNumber
-	 * Sets String
-	 * @param LensSerialNumber String
-	 */
+        /**
+         * setLensSerialNumber
+         * Sets String
+         * @param LensSerialNumber String
+         */
   public void setLensSerialNumber(String LensSerialNumber) {
     this.LensSerialNumber = LensSerialNumber;
   }
 
   /**
-	 * getLensSpecification
-	 * Gets List<Double>
-	 * @return LensSpecification
-	 */
+         * getLensSpecification
+         * Gets List<Double>
+         * @return LensSpecification
+         */
   public List<Double> getLensSpecification() {
     return LensSpecification;
   }
 
-	/**
-	 * setLensSpecification
-	 * Sets List<Double>
-	 * @param LensSpecification List<Double>
-	 */
+        /**
+         * setLensSpecification
+         * Sets List<Double>
+         * @param LensSpecification List<Double>
+         */
   public void setLensSpecification(List<Double> LensSpecification) {
     this.LensSpecification = LensSpecification;
   }
 
   /**
-	 * getLightSource
-	 * Gets String
-	 * @return LightSource
-	 */
+         * getLightSource
+         * Gets String
+         * @return LightSource
+         */
   public String getLightSource() {
     return LightSource;
   }
 
-	/**
-	 * setLightSource
-	 * Sets String
-	 * @param LightSource String
-	 */
+        /**
+         * setLightSource
+         * Sets String
+         * @param LightSource String
+         */
   public void setLightSource(String LightSource) {
     this.LightSource = LightSource;
   }
 
   /**
-	 * getMakerNoteRawData
-	 * Gets String
-	 * @return MakerNoteRawData
-	 */
+         * getMakerNoteRawData
+         * Gets String
+         * @return MakerNoteRawData
+         */
   public String getMakerNoteRawData() {
     return MakerNoteRawData;
   }
 
-	/**
-	 * setMakerNoteRawData
-	 * Sets String
-	 * @param MakerNoteRawData String
-	 */
+        /**
+         * setMakerNoteRawData
+         * Sets String
+         * @param MakerNoteRawData String
+         */
   public void setMakerNoteRawData(String MakerNoteRawData) {
     this.MakerNoteRawData = MakerNoteRawData;
   }
 
   /**
-	 * getMaxApertureValue
-	 * Gets Double
-	 * @return MaxApertureValue
-	 */
+         * getMaxApertureValue
+         * Gets Double
+         * @return MaxApertureValue
+         */
   public Double getMaxApertureValue() {
     return MaxApertureValue;
   }
 
-	/**
-	 * setMaxApertureValue
-	 * Sets Double
-	 * @param MaxApertureValue Double
-	 */
+        /**
+         * setMaxApertureValue
+         * Sets Double
+         * @param MaxApertureValue Double
+         */
   public void setMaxApertureValue(Double MaxApertureValue) {
     this.MaxApertureValue = MaxApertureValue;
   }
 
   /**
-	 * getMeteringMode
-	 * Gets String
-	 * @return MeteringMode
-	 */
+         * getMeteringMode
+         * Gets String
+         * @return MeteringMode
+         */
   public String getMeteringMode() {
     return MeteringMode;
   }
 
-	/**
-	 * setMeteringMode
-	 * Sets String
-	 * @param MeteringMode String
-	 */
+        /**
+         * setMeteringMode
+         * Sets String
+         * @param MeteringMode String
+         */
   public void setMeteringMode(String MeteringMode) {
     this.MeteringMode = MeteringMode;
   }
 
   /**
-	 * getOECF
-	 * Gets String
-	 * @return OECF
-	 */
+         * getOECF
+         * Gets String
+         * @return OECF
+         */
   public String getOECF() {
     return OECF;
   }
 
-	/**
-	 * setOECF
-	 * Sets String
-	 * @param OECF String
-	 */
+        /**
+         * setOECF
+         * Sets String
+         * @param OECF String
+         */
   public void setOECF(String OECF) {
     this.OECF = OECF;
   }
 
   /**
-	 * getPixelXDimension
-	 * Gets Integer
-	 * @return PixelXDimension
-	 */
+         * getPixelXDimension
+         * Gets Integer
+         * @return PixelXDimension
+         */
   public Integer getPixelXDimension() {
     return PixelXDimension;
   }
 
-	/**
-	 * setPixelXDimension
-	 * Sets Integer
-	 * @param PixelXDimension Integer
-	 */
+        /**
+         * setPixelXDimension
+         * Sets Integer
+         * @param PixelXDimension Integer
+         */
   public void setPixelXDimension(Integer PixelXDimension) {
     this.PixelXDimension = PixelXDimension;
   }
 
   /**
-	 * getPixelYDimension
-	 * Gets Integer
-	 * @return PixelYDimension
-	 */
+         * getPixelYDimension
+         * Gets Integer
+         * @return PixelYDimension
+         */
   public Integer getPixelYDimension() {
     return PixelYDimension;
   }
 
-	/**
-	 * setPixelYDimension
-	 * Sets Integer
-	 * @param PixelYDimension Integer
-	 */
+        /**
+         * setPixelYDimension
+         * Sets Integer
+         * @param PixelYDimension Integer
+         */
   public void setPixelYDimension(Integer PixelYDimension) {
     this.PixelYDimension = PixelYDimension;
   }
 
   /**
-	 * getRecommendedExposureIndex
-	 * Gets Integer
-	 * @return RecommendedExposureIndex
-	 */
+         * getRecommendedExposureIndex
+         * Gets Integer
+         * @return RecommendedExposureIndex
+         */
   public Integer getRecommendedExposureIndex() {
     return RecommendedExposureIndex;
   }
 
-	/**
-	 * setRecommendedExposureIndex
-	 * Sets Integer
-	 * @param RecommendedExposureIndex Integer
-	 */
+        /**
+         * setRecommendedExposureIndex
+         * Sets Integer
+         * @param RecommendedExposureIndex Integer
+         */
   public void setRecommendedExposureIndex(Integer RecommendedExposureIndex) {
     this.RecommendedExposureIndex = RecommendedExposureIndex;
   }
 
   /**
-	 * getRelatedSoundFile
-	 * Gets String
-	 * @return RelatedSoundFile
-	 */
+         * getRelatedSoundFile
+         * Gets String
+         * @return RelatedSoundFile
+         */
   public String getRelatedSoundFile() {
     return RelatedSoundFile;
   }
 
-	/**
-	 * setRelatedSoundFile
-	 * Sets String
-	 * @param RelatedSoundFile String
-	 */
+        /**
+         * setRelatedSoundFile
+         * Sets String
+         * @param RelatedSoundFile String
+         */
   public void setRelatedSoundFile(String RelatedSoundFile) {
     this.RelatedSoundFile = RelatedSoundFile;
   }
 
   /**
-	 * getSaturation
-	 * Gets String
-	 * @return Saturation
-	 */
+         * getSaturation
+         * Gets String
+         * @return Saturation
+         */
   public String getSaturation() {
     return Saturation;
   }
 
-	/**
-	 * setSaturation
-	 * Sets String
-	 * @param Saturation String
-	 */
+        /**
+         * setSaturation
+         * Sets String
+         * @param Saturation String
+         */
   public void setSaturation(String Saturation) {
     this.Saturation = Saturation;
   }
 
   /**
-	 * getSceneCaptureType
-	 * Gets String
-	 * @return SceneCaptureType
-	 */
+         * getSceneCaptureType
+         * Gets String
+         * @return SceneCaptureType
+         */
   public String getSceneCaptureType() {
     return SceneCaptureType;
   }
 
-	/**
-	 * setSceneCaptureType
-	 * Sets String
-	 * @param SceneCaptureType String
-	 */
+        /**
+         * setSceneCaptureType
+         * Sets String
+         * @param SceneCaptureType String
+         */
   public void setSceneCaptureType(String SceneCaptureType) {
     this.SceneCaptureType = SceneCaptureType;
   }
 
   /**
-	 * getSceneType
-	 * Gets String
-	 * @return SceneType
-	 */
-  public String getSceneType() {
+         * getSceneType
+         * Gets Integer
+         * @return SceneType
+         */
+  public Integer getSceneType() {
     return SceneType;
   }
 
-	/**
-	 * setSceneType
-	 * Sets String
-	 * @param SceneType String
-	 */
-  public void setSceneType(String SceneType) {
+        /**
+         * setSceneType
+         * Sets Integer
+         * @param SceneType Integer
+         */
+  public void setSceneType(Integer SceneType) {
     this.SceneType = SceneType;
   }
 
   /**
-	 * getSensingMethod
-	 * Gets String
-	 * @return SensingMethod
-	 */
+         * getSensingMethod
+         * Gets String
+         * @return SensingMethod
+         */
   public String getSensingMethod() {
     return SensingMethod;
   }
 
-	/**
-	 * setSensingMethod
-	 * Sets String
-	 * @param SensingMethod String
-	 */
+        /**
+         * setSensingMethod
+         * Sets String
+         * @param SensingMethod String
+         */
   public void setSensingMethod(String SensingMethod) {
     this.SensingMethod = SensingMethod;
   }
 
   /**
-	 * getSensitivityType
-	 * Gets Integer
-	 * @return SensitivityType
-	 */
+         * getSensitivityType
+         * Gets Integer
+         * @return SensitivityType
+         */
   public Integer getSensitivityType() {
     return SensitivityType;
   }
 
-	/**
-	 * setSensitivityType
-	 * Sets Integer
-	 * @param SensitivityType Integer
-	 */
+        /**
+         * setSensitivityType
+         * Sets Integer
+         * @param SensitivityType Integer
+         */
   public void setSensitivityType(Integer SensitivityType) {
     this.SensitivityType = SensitivityType;
   }
 
   /**
-	 * getSharpness
-	 * Gets Integer
-	 * @return Sharpness
-	 */
+         * getSharpness
+         * Gets Integer
+         * @return Sharpness
+         */
   public Integer getSharpness() {
     return Sharpness;
   }
 
-	/**
-	 * setSharpness
-	 * Sets Integer
-	 * @param Sharpness Integer
-	 */
+        /**
+         * setSharpness
+         * Sets Integer
+         * @param Sharpness Integer
+         */
   public void setSharpness(Integer Sharpness) {
     this.Sharpness = Sharpness;
   }
 
   /**
-	 * getShutterSpeedValue
-	 * Gets Double
-	 * @return ShutterSpeedValue
-	 */
+         * getShutterSpeedValue
+         * Gets Double
+         * @return ShutterSpeedValue
+         */
   public Double getShutterSpeedValue() {
     return ShutterSpeedValue;
   }
 
-	/**
-	 * setShutterSpeedValue
-	 * Sets Double
-	 * @param ShutterSpeedValue Double
-	 */
+        /**
+         * setShutterSpeedValue
+         * Sets Double
+         * @param ShutterSpeedValue Double
+         */
   public void setShutterSpeedValue(Double ShutterSpeedValue) {
     this.ShutterSpeedValue = ShutterSpeedValue;
   }
 
   /**
-	 * getSpatialFrequencyResponse
-	 * Gets String
-	 * @return SpatialFrequencyResponse
-	 */
+         * getSpatialFrequencyResponse
+         * Gets String
+         * @return SpatialFrequencyResponse
+         */
   public String getSpatialFrequencyResponse() {
     return SpatialFrequencyResponse;
   }
 
-	/**
-	 * setSpatialFrequencyResponse
-	 * Sets String
-	 * @param SpatialFrequencyResponse String
-	 */
+        /**
+         * setSpatialFrequencyResponse
+         * Sets String
+         * @param SpatialFrequencyResponse String
+         */
   public void setSpatialFrequencyResponse(String SpatialFrequencyResponse) {
     this.SpatialFrequencyResponse = SpatialFrequencyResponse;
   }
 
   /**
-	 * getSpectralSensitivity
-	 * Gets String
-	 * @return SpectralSensitivity
-	 */
+         * getSpectralSensitivity
+         * Gets String
+         * @return SpectralSensitivity
+         */
   public String getSpectralSensitivity() {
     return SpectralSensitivity;
   }
 
-	/**
-	 * setSpectralSensitivity
-	 * Sets String
-	 * @param SpectralSensitivity String
-	 */
+        /**
+         * setSpectralSensitivity
+         * Sets String
+         * @param SpectralSensitivity String
+         */
   public void setSpectralSensitivity(String SpectralSensitivity) {
     this.SpectralSensitivity = SpectralSensitivity;
   }
 
   /**
-	 * getStandardOutputSensitivity
-	 * Gets Integer
-	 * @return StandardOutputSensitivity
-	 */
+         * getStandardOutputSensitivity
+         * Gets Integer
+         * @return StandardOutputSensitivity
+         */
   public Integer getStandardOutputSensitivity() {
     return StandardOutputSensitivity;
   }
 
-	/**
-	 * setStandardOutputSensitivity
-	 * Sets Integer
-	 * @param StandardOutputSensitivity Integer
-	 */
+        /**
+         * setStandardOutputSensitivity
+         * Sets Integer
+         * @param StandardOutputSensitivity Integer
+         */
   public void setStandardOutputSensitivity(Integer StandardOutputSensitivity) {
     this.StandardOutputSensitivity = StandardOutputSensitivity;
   }
 
   /**
-	 * getSubjectArea
-	 * Gets List<Integer>
-	 * @return SubjectArea
-	 */
+         * getSubjectArea
+         * Gets List<Integer>
+         * @return SubjectArea
+         */
   public List<Integer> getSubjectArea() {
     return SubjectArea;
   }
 
-	/**
-	 * setSubjectArea
-	 * Sets List<Integer>
-	 * @param SubjectArea List<Integer>
-	 */
+        /**
+         * setSubjectArea
+         * Sets List<Integer>
+         * @param SubjectArea List<Integer>
+         */
   public void setSubjectArea(List<Integer> SubjectArea) {
     this.SubjectArea = SubjectArea;
   }
 
   /**
-	 * getSubjectDistance
-	 * Gets Double
-	 * @return SubjectDistance
-	 */
+         * getSubjectDistance
+         * Gets Double
+         * @return SubjectDistance
+         */
   public Double getSubjectDistance() {
     return SubjectDistance;
   }
 
-	/**
-	 * setSubjectDistance
-	 * Sets Double
-	 * @param SubjectDistance Double
-	 */
+        /**
+         * setSubjectDistance
+         * Sets Double
+         * @param SubjectDistance Double
+         */
   public void setSubjectDistance(Double SubjectDistance) {
     this.SubjectDistance = SubjectDistance;
   }
 
   /**
-	 * getSubjectDistanceRange
-	 * Gets String
-	 * @return SubjectDistanceRange
-	 */
+         * getSubjectDistanceRange
+         * Gets String
+         * @return SubjectDistanceRange
+         */
   public String getSubjectDistanceRange() {
     return SubjectDistanceRange;
   }
 
-	/**
-	 * setSubjectDistanceRange
-	 * Sets String
-	 * @param SubjectDistanceRange String
-	 */
+        /**
+         * setSubjectDistanceRange
+         * Sets String
+         * @param SubjectDistanceRange String
+         */
   public void setSubjectDistanceRange(String SubjectDistanceRange) {
     this.SubjectDistanceRange = SubjectDistanceRange;
   }
 
   /**
-	 * getSubjectLocation
-	 * Gets List<Integer>
-	 * @return SubjectLocation
-	 */
+         * getSubjectLocation
+         * Gets List<Integer>
+         * @return SubjectLocation
+         */
   public List<Integer> getSubjectLocation() {
     return SubjectLocation;
   }
 
-	/**
-	 * setSubjectLocation
-	 * Sets List<Integer>
-	 * @param SubjectLocation List<Integer>
-	 */
+        /**
+         * setSubjectLocation
+         * Sets List<Integer>
+         * @param SubjectLocation List<Integer>
+         */
   public void setSubjectLocation(List<Integer> SubjectLocation) {
     this.SubjectLocation = SubjectLocation;
   }
 
   /**
-	 * getSubsecTime
-	 * Gets String
-	 * @return SubsecTime
-	 */
+         * getSubsecTime
+         * Gets String
+         * @return SubsecTime
+         */
   public String getSubsecTime() {
     return SubsecTime;
   }
 
-	/**
-	 * setSubsecTime
-	 * Sets String
-	 * @param SubsecTime String
-	 */
+        /**
+         * setSubsecTime
+         * Sets String
+         * @param SubsecTime String
+         */
   public void setSubsecTime(String SubsecTime) {
     this.SubsecTime = SubsecTime;
   }
 
   /**
-	 * getSubsecTimeDigitized
-	 * Gets String
-	 * @return SubsecTimeDigitized
-	 */
+         * getSubsecTimeDigitized
+         * Gets String
+         * @return SubsecTimeDigitized
+         */
   public String getSubsecTimeDigitized() {
     return SubsecTimeDigitized;
   }
 
-	/**
-	 * setSubsecTimeDigitized
-	 * Sets String
-	 * @param SubsecTimeDigitized String
-	 */
+        /**
+         * setSubsecTimeDigitized
+         * Sets String
+         * @param SubsecTimeDigitized String
+         */
   public void setSubsecTimeDigitized(String SubsecTimeDigitized) {
     this.SubsecTimeDigitized = SubsecTimeDigitized;
   }
 
   /**
-	 * getSubsecTimeOriginal
-	 * Gets String
-	 * @return SubsecTimeOriginal
-	 */
+         * getSubsecTimeOriginal
+         * Gets String
+         * @return SubsecTimeOriginal
+         */
   public String getSubsecTimeOriginal() {
     return SubsecTimeOriginal;
   }
 
-	/**
-	 * setSubsecTimeOriginal
-	 * Sets String
-	 * @param SubsecTimeOriginal String
-	 */
+        /**
+         * setSubsecTimeOriginal
+         * Sets String
+         * @param SubsecTimeOriginal String
+         */
   public void setSubsecTimeOriginal(String SubsecTimeOriginal) {
     this.SubsecTimeOriginal = SubsecTimeOriginal;
   }
 
   /**
-	 * getUserComment
-	 * Gets String
-	 * @return UserComment
-	 */
+         * getUserComment
+         * Gets String
+         * @return UserComment
+         */
   public String getUserComment() {
     return UserComment;
   }
 
-	/**
-	 * setUserComment
-	 * Sets String
-	 * @param UserComment String
-	 */
+        /**
+         * setUserComment
+         * Sets String
+         * @param UserComment String
+         */
   public void setUserComment(String UserComment) {
     this.UserComment = UserComment;
   }
 
   /**
-	 * getWhiteBalance
-	 * Gets String
-	 * @return WhiteBalance
-	 */
+         * getWhiteBalance
+         * Gets String
+         * @return WhiteBalance
+         */
   public String getWhiteBalance() {
     return WhiteBalance;
   }
 
-	/**
-	 * setWhiteBalance
-	 * Sets String
-	 * @param WhiteBalance String
-	 */
+        /**
+         * setWhiteBalance
+         * Sets String
+         * @param WhiteBalance String
+         */
   public void setWhiteBalance(String WhiteBalance) {
     this.WhiteBalance = WhiteBalance;
   }
 
   /**
-	 * getWhitePoint
-	 * Gets List<Double>
-	 * @return WhitePoint
-	 */
+         * getWhitePoint
+         * Gets List<Double>
+         * @return WhitePoint
+         */
   public List<Double> getWhitePoint() {
     return WhitePoint;
   }
 
-	/**
-	 * setWhitePoint
-	 * Sets List<Double>
-	 * @param WhitePoint List<Double>
-	 */
+        /**
+         * setWhitePoint
+         * Sets List<Double>
+         * @param WhitePoint List<Double>
+         */
   public void setWhitePoint(List<Double> WhitePoint) {
     this.WhitePoint = WhitePoint;
   }

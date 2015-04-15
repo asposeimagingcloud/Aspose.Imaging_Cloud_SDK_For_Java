@@ -5,37 +5,37 @@ public class TiffProperties {
   private String ByteOrder = null;
   private ExifData ExifData = null;
   /**
-	 * getByteOrder
-	 * Gets String
-	 * @return ByteOrder
-	 */
+         * getByteOrder
+         * Gets String
+         * @return ByteOrder
+         */
   public String getByteOrder() {
     return ByteOrder;
   }
 
-	/**
-	 * setByteOrder
-	 * Sets String
-	 * @param ByteOrder String
-	 */
+        /**
+         * setByteOrder
+         * Sets String
+         * @param ByteOrder String
+         */
   public void setByteOrder(String ByteOrder) {
     this.ByteOrder = ByteOrder;
   }
 
   /**
-	 * getExifData
-	 * Gets ExifData
-	 * @return ExifData
-	 */
+         * getExifData
+         * Gets ExifData
+         * @return ExifData
+         */
   public ExifData getExifData() {
     return ExifData;
   }
 
-	/**
-	 * setExifData
-	 * Sets ExifData
-	 * @param ExifData ExifData
-	 */
+        /**
+         * setExifData
+         * Sets ExifData
+         * @param ExifData ExifData
+         */
   public void setExifData(ExifData ExifData) {
     this.ExifData = ExifData;
   }

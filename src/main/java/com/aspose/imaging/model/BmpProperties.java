@@ -3,19 +3,19 @@ package com.aspose.imaging.model;
 public class BmpProperties {
   private String Compression = null;
   /**
-	 * getCompression
-	 * Gets String
-	 * @return Compression
-	 */
+         * getCompression
+         * Gets String
+         * @return Compression
+         */
   public String getCompression() {
     return Compression;
   }
 
-	/**
-	 * setCompression
-	 * Sets String
-	 * @param Compression String
-	 */
+        /**
+         * setCompression
+         * Sets String
+         * @param Compression String
+         */
   public void setCompression(String Compression) {
     this.Compression = Compression;
   }

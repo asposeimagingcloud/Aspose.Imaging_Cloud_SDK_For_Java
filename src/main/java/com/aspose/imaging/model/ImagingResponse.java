@@ -22,253 +22,253 @@ public class ImagingResponse {
   private String Code = null;
   private String Status = null;
   /**
-	 * getHeight
-	 * Gets Integer
-	 * @return Height
-	 */
+         * getHeight
+         * Gets Integer
+         * @return Height
+         */
   public Integer getHeight() {
     return Height;
   }
 
-	/**
-	 * setHeight
-	 * Sets Integer
-	 * @param Height Integer
-	 */
+        /**
+         * setHeight
+         * Sets Integer
+         * @param Height Integer
+         */
   public void setHeight(Integer Height) {
     this.Height = Height;
   }
 
   /**
-	 * getWidth
-	 * Gets Integer
-	 * @return Width
-	 */
+         * getWidth
+         * Gets Integer
+         * @return Width
+         */
   public Integer getWidth() {
     return Width;
   }
 
-	/**
-	 * setWidth
-	 * Sets Integer
-	 * @param Width Integer
-	 */
+        /**
+         * setWidth
+         * Sets Integer
+         * @param Width Integer
+         */
   public void setWidth(Integer Width) {
     this.Width = Width;
   }
 
   /**
-	 * getBitsPerPixel
-	 * Gets Integer
-	 * @return BitsPerPixel
-	 */
+         * getBitsPerPixel
+         * Gets Integer
+         * @return BitsPerPixel
+         */
   public Integer getBitsPerPixel() {
     return BitsPerPixel;
   }
 
-	/**
-	 * setBitsPerPixel
-	 * Sets Integer
-	 * @param BitsPerPixel Integer
-	 */
+        /**
+         * setBitsPerPixel
+         * Sets Integer
+         * @param BitsPerPixel Integer
+         */
   public void setBitsPerPixel(Integer BitsPerPixel) {
     this.BitsPerPixel = BitsPerPixel;
   }
 
   /**
-	 * getBmpProperties
-	 * Gets BmpProperties
-	 * @return BmpProperties
-	 */
+         * getBmpProperties
+         * Gets BmpProperties
+         * @return BmpProperties
+         */
   public BmpProperties getBmpProperties() {
     return BmpProperties;
   }
 
-	/**
-	 * setBmpProperties
-	 * Sets BmpProperties
-	 * @param BmpProperties BmpProperties
-	 */
+        /**
+         * setBmpProperties
+         * Sets BmpProperties
+         * @param BmpProperties BmpProperties
+         */
   public void setBmpProperties(BmpProperties BmpProperties) {
     this.BmpProperties = BmpProperties;
   }
 
   /**
-	 * getGifProperties
-	 * Gets GifProperties
-	 * @return GifProperties
-	 */
+         * getGifProperties
+         * Gets GifProperties
+         * @return GifProperties
+         */
   public GifProperties getGifProperties() {
     return GifProperties;
   }
 
-	/**
-	 * setGifProperties
-	 * Sets GifProperties
-	 * @param GifProperties GifProperties
-	 */
+        /**
+         * setGifProperties
+         * Sets GifProperties
+         * @param GifProperties GifProperties
+         */
   public void setGifProperties(GifProperties GifProperties) {
     this.GifProperties = GifProperties;
   }
 
   /**
-	 * getJpegProperties
-	 * Gets JpegProperties
-	 * @return JpegProperties
-	 */
+         * getJpegProperties
+         * Gets JpegProperties
+         * @return JpegProperties
+         */
   public JpegProperties getJpegProperties() {
     return JpegProperties;
   }
 
-	/**
-	 * setJpegProperties
-	 * Sets JpegProperties
-	 * @param JpegProperties JpegProperties
-	 */
+        /**
+         * setJpegProperties
+         * Sets JpegProperties
+         * @param JpegProperties JpegProperties
+         */
   public void setJpegProperties(JpegProperties JpegProperties) {
     this.JpegProperties = JpegProperties;
   }
 
   /**
-	 * getPngProperties
-	 * Gets PngProperties
-	 * @return PngProperties
-	 */
+         * getPngProperties
+         * Gets PngProperties
+         * @return PngProperties
+         */
   public PngProperties getPngProperties() {
     return PngProperties;
   }
 
-	/**
-	 * setPngProperties
-	 * Sets PngProperties
-	 * @param PngProperties PngProperties
-	 */
+        /**
+         * setPngProperties
+         * Sets PngProperties
+         * @param PngProperties PngProperties
+         */
   public void setPngProperties(PngProperties PngProperties) {
     this.PngProperties = PngProperties;
   }
 
   /**
-	 * getTiffProperties
-	 * Gets TiffProperties
-	 * @return TiffProperties
-	 */
+         * getTiffProperties
+         * Gets TiffProperties
+         * @return TiffProperties
+         */
   public TiffProperties getTiffProperties() {
     return TiffProperties;
   }
 
-	/**
-	 * setTiffProperties
-	 * Sets TiffProperties
-	 * @param TiffProperties TiffProperties
-	 */
+        /**
+         * setTiffProperties
+         * Sets TiffProperties
+         * @param TiffProperties TiffProperties
+         */
   public void setTiffProperties(TiffProperties TiffProperties) {
     this.TiffProperties = TiffProperties;
   }
 
   /**
-	 * getPsdProperties
-	 * Gets PsdProperties
-	 * @return PsdProperties
-	 */
+         * getPsdProperties
+         * Gets PsdProperties
+         * @return PsdProperties
+         */
   public PsdProperties getPsdProperties() {
     return PsdProperties;
   }
 
-	/**
-	 * setPsdProperties
-	 * Sets PsdProperties
-	 * @param PsdProperties PsdProperties
-	 */
+        /**
+         * setPsdProperties
+         * Sets PsdProperties
+         * @param PsdProperties PsdProperties
+         */
   public void setPsdProperties(PsdProperties PsdProperties) {
     this.PsdProperties = PsdProperties;
   }
 
   /**
-	 * getHorizontalResolution
-	 * Gets Double
-	 * @return HorizontalResolution
-	 */
+         * getHorizontalResolution
+         * Gets Double
+         * @return HorizontalResolution
+         */
   public Double getHorizontalResolution() {
     return HorizontalResolution;
   }
 
-	/**
-	 * setHorizontalResolution
-	 * Sets Double
-	 * @param HorizontalResolution Double
-	 */
+        /**
+         * setHorizontalResolution
+         * Sets Double
+         * @param HorizontalResolution Double
+         */
   public void setHorizontalResolution(Double HorizontalResolution) {
     this.HorizontalResolution = HorizontalResolution;
   }
 
   /**
-	 * getVerticalResolution
-	 * Gets Double
-	 * @return VerticalResolution
-	 */
+         * getVerticalResolution
+         * Gets Double
+         * @return VerticalResolution
+         */
   public Double getVerticalResolution() {
     return VerticalResolution;
   }
 
-	/**
-	 * setVerticalResolution
-	 * Sets Double
-	 * @param VerticalResolution Double
-	 */
+        /**
+         * setVerticalResolution
+         * Sets Double
+         * @param VerticalResolution Double
+         */
   public void setVerticalResolution(Double VerticalResolution) {
     this.VerticalResolution = VerticalResolution;
   }
 
   /**
-	 * getIsCached
-	 * Gets Boolean
-	 * @return IsCached
-	 */
+         * getIsCached
+         * Gets Boolean
+         * @return IsCached
+         */
   public Boolean getIsCached() {
     return IsCached;
   }
 
-	/**
-	 * setIsCached
-	 * Sets Boolean
-	 * @param IsCached Boolean
-	 */
+        /**
+         * setIsCached
+         * Sets Boolean
+         * @param IsCached Boolean
+         */
   public void setIsCached(Boolean IsCached) {
     this.IsCached = IsCached;
   }
 
   /**
-	 * getCode
-	 * Gets String
-	 * @return Code
-	 */
+         * getCode
+         * Gets String
+         * @return Code
+         */
   public String getCode() {
     return Code;
   }
 
-	/**
-	 * setCode
-	 * Sets String
-	 * @param Code String
-	 */
+        /**
+         * setCode
+         * Sets String
+         * @param Code String
+         */
   public void setCode(String Code) {
     this.Code = Code;
   }
 
   /**
-	 * getStatus
-	 * Gets String
-	 * @return Status
-	 */
+         * getStatus
+         * Gets String
+         * @return Status
+         */
   public String getStatus() {
     return Status;
   }
 
-	/**
-	 * setStatus
-	 * Sets String
-	 * @param Status String
-	 */
+        /**
+         * setStatus
+         * Sets String
+         * @param Status String
+         */
   public void setStatus(String Status) {
     this.Status = Status;
   }

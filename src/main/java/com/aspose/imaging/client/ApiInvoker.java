@@ -1,4 +1,4 @@
-package com.aspose.client;
+package com.aspose.imaging.client;
 
 
 import java.io.File;

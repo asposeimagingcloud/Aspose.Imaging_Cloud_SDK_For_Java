@@ -5,9 +5,9 @@
 package com.aspose.imaging.api;
 
 
+import com.aspose.imaging.client.ApiException;
 import com.aspose.imaging.model.ImagingResponse;
 import com.aspose.imaging.model.ResponseMessage;
-import com.aspose.client.ApiException;
 
 import org.junit.After;
 import org.junit.AfterClass;

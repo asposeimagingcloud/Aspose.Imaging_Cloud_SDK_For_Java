@@ -1,9 +1,8 @@
 package com.aspose.imaging.api;
 
-import com.aspose.client.ApiException;
-import com.aspose.client.ApiInvoker;
-import com.aspose.client.ApiInvokerResponse;
-
+import com.aspose.imaging.client.ApiException;
+import com.aspose.imaging.client.ApiInvoker;
+import com.aspose.imaging.client.ApiInvokerResponse;
 import com.aspose.imaging.model.ResponseMessage;
 import com.aspose.imaging.model.ImagingResponse;
 import com.aspose.imaging.model.SaaSposeResponse;
@@ -25,11 +24,26 @@ public class ImagingApi {
     apiInvoker.addDefaultHeader(apiInvoker.APP_SID, appSid);
   }
 
+  public ImagingApi(String basePath, String apiKey, String appSid, boolean isDebug) {
+          this.basePath = basePath;
+          apiInvoker.addDefaultHeader(apiInvoker.API_KEY, apiKey);
+          apiInvoker.addDefaultHeader(apiInvoker.APP_SID, appSid);
+          if(isDebug)
+                  apiInvoker.enableDebug();
+   }
+  
   public ImagingApi(String apiKey, String appSid) {
     apiInvoker.addDefaultHeader(apiInvoker.API_KEY, apiKey);
     apiInvoker.addDefaultHeader(apiInvoker.APP_SID, appSid);
   }
 
+  public ImagingApi(String apiKey, String appSid, boolean isDebug) {
+          apiInvoker.addDefaultHeader(apiInvoker.API_KEY, apiKey);
+          apiInvoker.addDefaultHeader(apiInvoker.APP_SID, appSid);
+          if(isDebug)
+                  apiInvoker.enableDebug();
+   }
+  
   public ApiInvoker getInvoker() {
     return apiInvoker;
   }
